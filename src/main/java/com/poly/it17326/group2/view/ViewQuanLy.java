@@ -153,6 +153,9 @@ public class ViewQuanLy extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuBanHangMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuBanHangMouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout pnlBanHangLayout = new javax.swing.GroupLayout(pnlBanHang);
@@ -364,8 +367,31 @@ public class ViewQuanLy extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSanPhamMouseClicked
 
     private void menuBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBanHangMouseClicked
-
+        pnlBanHang.setBackground(Color.WHITE);
+        menuBanHang.setForeground(new Color(0,0,0));
+        menuBanHang.setForeground(Color.BLACK);
+        menuNhanVien.setForeground(Color.BLACK);
+        menuKhachHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuDangXuat.setForeground(Color.BLACK);
+        menuThoat.setForeground(Color.BLACK);
+        pnlThoat.setBackground(null);
+        pnlDangXuat.setBackground(null);
+        pnlNhanVien.setBackground(null);
+        pnlKhachHang.setBackground(null);
+        pnlSanPham.setBackground(null);
+        BanHang banHang = new BanHang();
+        pblQuanLy.removeAll();
+        pblQuanLy.add(banHang);
+        pblQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        //ViewBanHang.webcam.close();
+        pblQuanLy.setVisible(true);
     }//GEN-LAST:event_menuBanHangMouseClicked
+
+    private void menuBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBanHangMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBanHangMouseEntered
 
     /**
      * @param args the command line arguments
@@ -408,8 +434,6 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNgayGio;
     private javax.swing.JLabel lblNgayGio1;
