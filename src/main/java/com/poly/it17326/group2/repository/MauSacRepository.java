@@ -11,13 +11,15 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.NativeQuery;
 
 /**
  *
  * @author phuongktph26630
  */
 public class MauSacRepository {
+
+    private Session session = HibernateConfig.getFACTORY().openSession();
 
     public List<MauSac> getListFromDB() {
         List<MauSac> list;
@@ -29,7 +31,7 @@ public class MauSacRepository {
     }
 
     public Boolean addNew(MauSac mauSac) {
-        try(Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(mauSac);
             transaction.commit();
@@ -40,7 +42,7 @@ public class MauSacRepository {
     }
 
     public Boolean upDate(MauSac mauSac) {
-       try(Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(mauSac);
             transaction.commit();
@@ -51,7 +53,7 @@ public class MauSacRepository {
     }
 
     public Boolean delete(String id) {
-        try (Session session = HibernateConfig.getFACTORY().openSession()){
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery("DELETE MauSac p WHERE p.id = : id");
             query.setParameter("id", id);
@@ -62,7 +64,28 @@ public class MauSacRepository {
             return false;
         }
 
+    }
 
+    public int genMaMauSac() {
+        String maStr = "";
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(Ma,3,10))) from MauSac";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
     }
 
 }

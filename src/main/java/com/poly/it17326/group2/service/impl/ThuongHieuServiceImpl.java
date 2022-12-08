@@ -46,5 +46,8 @@ public class ThuongHieuServiceImpl implements ICommon<ViewThuongHieuReposponse, 
         return thuongHieuRepository.xoa(id);
     }
 
-    
+    @Override
+    public int genMaTuDong() {
+        return thuongHieuRepository.genMaThuongHieu();
+    }
 }

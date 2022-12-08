@@ -186,6 +186,10 @@ select * from ChiTietSP
 select * from SanPham
 select * from DeGiay
 select * from MauSac
+select * from ThuongHieu
+
+delete from SanPham where id = 'A632085F-1C50-41C2-99D6-FC31847D6CC1'
+
 update MauSac
 set Ten = N'Xám'
 where  id = '492F96FF-F4F9-4F56-9434-4843C310BBA1'

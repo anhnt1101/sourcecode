@@ -32,7 +32,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Size implements Serializable {
+public class KichThuoc implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

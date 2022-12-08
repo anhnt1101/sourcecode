@@ -15,14 +15,15 @@ import com.poly.it17326.group2.service.ICommon;
  *
  * @author nguye
  */
-public class DeGiayServiceImpl implements ICommon<ViewDeGiayResponse,DeGiay>{
+public class DeGiayServiceImpl implements ICommon<ViewDeGiayResponse, DeGiay> {
+
     private DeGiayRepository deGiayRepository = new DeGiayRepository();
-    
+
     @Override
     public List<ViewDeGiayResponse> getAll() {
         List<ViewDeGiayResponse> responses = new ArrayList<>();
         List<DeGiay> lists = deGiayRepository.getList();
-        for(DeGiay deGiay: lists){
+        for (DeGiay deGiay : lists) {
             ViewDeGiayResponse viewDeGiayResponse = new ViewDeGiayResponse(deGiay);
             responses.add(viewDeGiayResponse);
         }
@@ -44,4 +45,8 @@ public class DeGiayServiceImpl implements ICommon<ViewDeGiayResponse,DeGiay>{
         return deGiayRepository.delete(id);
     }
 
+    @Override
+    public int genMaTuDong() {
+        return deGiayRepository.genMaDeGiay();
+    }
 }

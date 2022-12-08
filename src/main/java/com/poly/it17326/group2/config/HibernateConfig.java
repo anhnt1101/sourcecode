@@ -8,7 +8,7 @@ import com.poly.it17326.group2.domainmodel.HoaDonChiTiet;
 import com.poly.it17326.group2.domainmodel.MauSac;
 import com.poly.it17326.group2.domainmodel.NhaCungCap;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import com.poly.it17326.group2.domainmodel.TaiKhoan;
 import com.poly.it17326.group2.domainmodel.ThuongHieu;
 import com.poly.it17326.group2.domainmodel.TrangThai;
@@ -38,7 +38,7 @@ public class HibernateConfig {
         conf.addAnnotatedClass(TaiKhoan.class);
         conf.addAnnotatedClass(DeGiay.class);
         conf.addAnnotatedClass(MauSac.class);
-        conf.addAnnotatedClass(Size.class);
+        conf.addAnnotatedClass(KichThuoc.class);
         conf.addAnnotatedClass(NhaCungCap.class);
         conf.addAnnotatedClass(ThuongHieu.class);
         conf.addAnnotatedClass(SanPham.class);

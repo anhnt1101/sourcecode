@@ -5,29 +5,32 @@
 package com.poly.it17326.group2.repository;
 
 import com.poly.it17326.group2.config.HibernateConfig;
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 /**
  *
  * @author haodqph27423
  */
-public class SizeRepository {
+public class KichThuocRepository {
 
-    public List<Size> getListFromDB() {
-        List<Size> list;
+    private Session session = HibernateConfig.getFACTORY().openSession();
+
+    public List<KichThuoc> getListFromDB() {
+        List<KichThuoc> list;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<Size> query = session.createQuery("SELECT p FROM Size p", Size.class);
+            TypedQuery<KichThuoc> query = session.createQuery("SELECT p FROM Size p", KichThuoc.class);
             list = query.getResultList();
         }
         return list;
     }
 
-    public Boolean addNew(Size size) {
+    public Boolean addNew(KichThuoc size) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(size);
@@ -38,7 +41,7 @@ public class SizeRepository {
         }
     }
 
-    public Boolean upDate(Size size) {
+    public Boolean upDate(KichThuoc size) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(size);
@@ -63,4 +66,25 @@ public class SizeRepository {
 
     }
 
+    public int genMaKichThuoc() {
+        String maStr = "";
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(Ma,3,10))) from KichThuoc";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
+    }
 }

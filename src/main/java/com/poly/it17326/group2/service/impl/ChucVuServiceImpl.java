@@ -36,5 +36,11 @@ public class ChucVuServiceImpl implements ICommon<ViewChucVuResponse, ChucVu>{
     public Boolean update(ChucVu chucVu) {
         return chucVuRepository.add(chucVu);
     }
+
+    @Override
+    public int genMaTuDong() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     
 }

@@ -5,10 +5,10 @@
 package com.poly.it17326.group2.view;
 
 
-import com.poly.it17326.group2.domainmodel.Size;
-import com.poly.it17326.group2.response.ViewSizeReponse;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
+import com.poly.it17326.group2.response.ViewKichThuocReponse;
 import com.poly.it17326.group2.service.ICommon;
-import com.poly.it17326.group2.service.impl.SizeServiceImpl;
+import com.poly.it17326.group2.service.impl.KichThuocServiceImpl;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,24 +17,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author haodqph27423
  */
-public class ViewSize extends javax.swing.JFrame {
+public class ViewKichThuoc extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewSize
+     * Creates new form ViewKichThuoc
      */
     private DefaultTableModel defaultTableModel = new DefaultTableModel();
-    private ICommon<ViewSizeReponse,Size> sizeService = new SizeServiceImpl();
+    private ICommon<ViewKichThuocReponse,KichThuoc> kichThuocService = new KichThuocServiceImpl();
 
-    public ViewSize() {
+    public ViewKichThuoc() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
-    private void loadData(List<ViewSizeReponse> list) {
+    private void loadData(List<ViewKichThuocReponse> list) {
         defaultTableModel = (DefaultTableModel) tblBangSize.getModel();
         defaultTableModel.setColumnIdentifiers(new String[]{"ID", "MÃ", "TÊN"});
         defaultTableModel.setRowCount(0);
-        for (ViewSizeReponse viewSizeReponse : list) {
+        for (ViewKichThuocReponse viewSizeReponse : list) {
             defaultTableModel.addRow(new Object[]{viewSizeReponse.getId(),
                 viewSizeReponse.getMa(), viewSizeReponse.getTen()});
         }
@@ -66,7 +66,7 @@ public class ViewSize extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("SIZE");
+        jLabel1.setText("KÍCH THƯỚC");
         jLabel1.setToolTipText("");
 
         jLabel2.setText("Mã");
@@ -133,22 +133,23 @@ public class ViewSize extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnRead, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                                    .addComponent(txtId)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                                        .addComponent(txtId)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtTen)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(261, 261, 261)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTen)))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
@@ -211,9 +212,9 @@ public class ViewSize extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String id = txtId.getText();
-        if (sizeService.delete(id)) {
+        if (kichThuocService.delete(id)) {
             JOptionPane.showMessageDialog(this, "xoá thành công");
-            loadData(sizeService.getAll());
+            loadData(kichThuocService.getAll());
         } else {
             JOptionPane.showMessageDialog(this, "xoá thất bại");
         }
@@ -222,21 +223,21 @@ public class ViewSize extends javax.swing.JFrame {
     private void btnReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadActionPerformed
         // TODO add your handling code here:
 
-        loadData(sizeService.getAll());
+        loadData(kichThuocService.getAll());
     }//GEN-LAST:event_btnReadActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Size size = new Size();
+        KichThuoc size = new KichThuoc();
 
         size.setMa(txtMa.getText());
         size.setTen(Integer.parseInt(txtTen.getText()));
-        if (sizeService.create(size)) {
+        if (kichThuocService.create(size)) {
             JOptionPane.showMessageDialog(this, "thêm thất bại!");
 
         } else {
             JOptionPane.showMessageDialog(this, "THêm thành công!");
-            loadData(sizeService.getAll());
+            loadData(kichThuocService.getAll());
         }
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -252,13 +253,13 @@ public class ViewSize extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        Size size = new Size();
+        KichThuoc size = new KichThuoc();
         size.setId(txtId.getText());
         size.setMa(txtMa.getText());
        size.setTen(Integer.parseInt(txtTen.getText()));
-        if (sizeService.update(size)) {
+        if (kichThuocService.update(size)) {
             JOptionPane.showMessageDialog(this, "sửa thành công");
-            loadData(sizeService.getAll());
+            loadData(kichThuocService.getAll());
         } else {
             JOptionPane.showMessageDialog(this, "sửa thất bại");
 
@@ -282,21 +283,23 @@ public class ViewSize extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewSize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewKichThuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewSize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewKichThuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewSize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewKichThuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewSize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewKichThuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewSize().setVisible(true);
+                new ViewKichThuoc().setVisible(true);
             }
         });
     }

@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class MauSacServiceImpl implements ICommon<ViewMauSacReponse, MauSac> {
 
-    private MauSacRepository sizeRepository = new MauSacRepository();
+    private MauSacRepository mauSacRepository = new MauSacRepository();
 
     @Override
     public List<ViewMauSacReponse> getAll() {
         List<ViewMauSacReponse> listReponse = new ArrayList<>();
-        List<MauSac> listSize = sizeRepository.getListFromDB();// lấy dữ liệu từ repository
-        for (MauSac mauSac : listSize) {
+        List<MauSac> listMauSac = mauSacRepository.getListFromDB();// lấy dữ liệu từ repository
+        for (MauSac mauSac : listMauSac) {
             ViewMauSacReponse viewSizeReponse = new ViewMauSacReponse(mauSac);
             listReponse.add(viewSizeReponse);
         }
@@ -32,17 +32,21 @@ public class MauSacServiceImpl implements ICommon<ViewMauSacReponse, MauSac> {
 
     @Override
     public Boolean create(MauSac mauSac) {
-        return sizeRepository.addNew(mauSac);
+        return mauSacRepository.addNew(mauSac);
     }
 
     @Override
     public Boolean update(MauSac mauSac) {
-        return sizeRepository.upDate(mauSac);
+        return mauSacRepository.upDate(mauSac);
     }
 
     @Override
     public Boolean delete(String id) {
-        return sizeRepository.delete(id);
+        return mauSacRepository.delete(id);
     }
 
+    @Override
+    public int genMaTuDong() {
+        return mauSacRepository.genMaMauSac();
+    }
 }

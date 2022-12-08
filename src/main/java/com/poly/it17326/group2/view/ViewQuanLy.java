@@ -20,7 +20,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
         initComponents();
         pnlSanPham.setBackground(Color.WHITE);
         menuSanPham.setForeground(new Color(0,0,0));
-        SanPham sanPham = new SanPham();
+        QuanLySanPham sanPham = new QuanLySanPham();
         pnlQuanLy.removeAll();
         pnlQuanLy.add(sanPham);
         pnlQuanLy.setLayout(new FlowLayout());
@@ -365,7 +365,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlKhachHang.setBackground(null);
         pnlBanHang.setBackground(null);
-        SanPham sanPham = new SanPham();
+        QuanLySanPham sanPham = new QuanLySanPham();
         pnlQuanLy.removeAll();
         pnlQuanLy.add(sanPham);
         pnlQuanLy.setLayout(new FlowLayout());

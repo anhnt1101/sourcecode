@@ -6,14 +6,14 @@ import com.poly.it17326.group2.domainmodel.DeGiay;
 import com.poly.it17326.group2.domainmodel.MauSac;
 import com.poly.it17326.group2.domainmodel.NhaCungCap;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import com.poly.it17326.group2.domainmodel.ThuongHieu;
 import com.poly.it17326.group2.response.ViewChiTietSPResponse;
 import com.poly.it17326.group2.response.ViewDeGiayResponse;
 import com.poly.it17326.group2.response.ViewMauSacReponse;
 import com.poly.it17326.group2.response.ViewNhaCungCapResponse;
 import com.poly.it17326.group2.response.ViewSanPhamResponse;
-import com.poly.it17326.group2.response.ViewSizeReponse;
+import com.poly.it17326.group2.response.ViewKichThuocReponse;
 import com.poly.it17326.group2.response.ViewThuongHieuReposponse;
 import com.poly.it17326.group2.service.BanHangService;
 import com.poly.it17326.group2.service.ChiTietSPService;
@@ -21,7 +21,7 @@ import com.poly.it17326.group2.service.ICommon;
 import com.poly.it17326.group2.service.impl.BanHangServiceImpl;
 import com.poly.it17326.group2.service.impl.ChiTietSPServiceImpl;
 import com.poly.it17326.group2.service.impl.SanPhamServiceImpl;
-import com.poly.it17326.group2.service.impl.SizeServiceImpl;
+import com.poly.it17326.group2.service.impl.KichThuocServiceImpl;
 import com.poly.it17326.group2.service.impl.DeGiayServiceImpl;
 import com.poly.it17326.group2.service.impl.MauSacServiceImpl;
 import com.poly.it17326.group2.service.impl.NhaCungCapServiceImpl;
@@ -55,7 +55,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
 
     private ChiTietSPService chiTietSPService = new ChiTietSPServiceImpl();
 
-    private ICommon<ViewSizeReponse, Size> sizeService = new SizeServiceImpl();
+    private ICommon<ViewKichThuocReponse, KichThuoc> sizeService = new KichThuocServiceImpl();
 
     private ICommon<ViewNhaCungCapResponse, NhaCungCap> nccService = new NhaCungCapServiceImpl();
 
@@ -95,9 +95,9 @@ public class ViewChiTietSP extends javax.swing.JFrame {
         }
     }
 
-    private void loadSize(List<ViewSizeReponse> listSize) {
+    private void loadSize(List<ViewKichThuocReponse> listSize) {
         dcbm = (DefaultComboBoxModel) cbbSize.getModel();
-        for (ViewSizeReponse viewSizeReponse : listSize) {
+        for (ViewKichThuocReponse viewSizeReponse : listSize) {
             dcbm.addElement(viewSizeReponse.getTen());
         }
     }
@@ -644,7 +644,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
         ctsp.setDeGiay(dg);
 
         int soSize = cbbSize.getSelectedIndex();
-        Size size = chiTietSPService.getSize().get(soSize);
+        KichThuoc size = chiTietSPService.getSize().get(soSize);
         ctsp.setSize(size);
 
         ctsp.setGia(BigDecimal.valueOf(Double.valueOf(txtGia.getText())));
@@ -773,7 +773,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
         ctsp.setDeGiay(dg);
 
         int soSize = cbbSize.getSelectedIndex();
-        Size size = chiTietSPService.getSize().get(soSize);
+        KichThuoc size = chiTietSPService.getSize().get(soSize);
         ctsp.setSize(size);
 
         ctsp.setGia(BigDecimal.valueOf(Double.valueOf(txtGia.getText())));

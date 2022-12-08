@@ -38,4 +38,9 @@ public class SanPhamServiceImpl implements ICommon<ViewSanPhamResponse, SanPham>
         return sanPhamRepository.delete(id);
     }
 
+    @Override
+    public int genMaTuDong() {
+        return sanPhamRepository.genMaSanPham();
+    }
+    
 }

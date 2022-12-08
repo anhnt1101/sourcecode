@@ -5,7 +5,7 @@ import com.poly.it17326.group2.domainmodel.DeGiay;
 import com.poly.it17326.group2.domainmodel.MauSac;
 import com.poly.it17326.group2.domainmodel.NhaCungCap;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import com.poly.it17326.group2.domainmodel.ThuongHieu;
 import com.poly.it17326.group2.repository.ChiTietSPRepository;
 import com.poly.it17326.group2.response.ViewChiTietSPResponse;
@@ -49,7 +49,7 @@ public class ChiTietSPServiceImpl implements ChiTietSPService {
     }
 
     @Override
-    public List<Size> getSize() {
+    public List<KichThuoc> getSize() {
         return chiTietSPRepository.getSize();
     }
 

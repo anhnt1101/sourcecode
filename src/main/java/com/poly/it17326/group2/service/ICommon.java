@@ -15,4 +15,5 @@ public interface ICommon<T,Y> {
     Boolean create(Y y);
     Boolean update(Y y);
     Boolean delete(String id);
+    int genMaTuDong();
 }

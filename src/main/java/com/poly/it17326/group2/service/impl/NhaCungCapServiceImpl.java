@@ -38,4 +38,8 @@ public class NhaCungCapServiceImpl implements ICommon<ViewNhaCungCapResponse, Nh
         return repository.xoa(id);
     }
 
+    @Override
+    public int genMaTuDong() {
+        return repository.genMaNhaCungCap();
+    }
 }

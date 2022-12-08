@@ -51,7 +51,7 @@ public class ChiTietSP implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "IdSize")
-    private Size size;
+    private KichThuoc size;
 
     @ManyToOne
     @JoinColumn(name = "IdDeGiay")

@@ -10,7 +10,7 @@ import com.poly.it17326.group2.domainmodel.DeGiay;
 import com.poly.it17326.group2.domainmodel.MauSac;
 import com.poly.it17326.group2.domainmodel.NhaCungCap;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import com.poly.it17326.group2.domainmodel.ThuongHieu;
 import java.util.List;
 import org.hibernate.Session;
@@ -50,7 +50,7 @@ public class ChiTietSPRepository {
         return query.getResultList();
     }
 
-    public List<Size> getSize() {
+    public List<KichThuoc> getSize() {
         Query query = session.createQuery("FROM Size");
         return query.getResultList();
     }

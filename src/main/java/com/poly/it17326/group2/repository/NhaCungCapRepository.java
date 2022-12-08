@@ -11,21 +11,23 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-
+import org.hibernate.query.NativeQuery;
 
 public class NhaCungCapRepository {
-    public List<NhaCungCap> getList(){
+
+    private Session session = HibernateConfig.getFACTORY().openSession();
+
+    public List<NhaCungCap> getList() {
         List<NhaCungCap> list;
-        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             TypedQuery<NhaCungCap> query = session.createQuery("SELECT p FROM NhaCungCap p", NhaCungCap.class);
             list = query.getResultList();
         }
         return list;
     }
 
-    public Boolean them(NhaCungCap nhaCungCap){
-        try(Session session = HibernateConfig.getFACTORY().openSession()) {
+    public Boolean them(NhaCungCap nhaCungCap) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(nhaCungCap);
             transaction.commit();
@@ -35,8 +37,8 @@ public class NhaCungCapRepository {
         }
     }
 
-    public Boolean xoa(String id){
-        try (Session session = HibernateConfig.getFACTORY().openSession()){
+    public Boolean xoa(String id) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery("DELETE NhaCungCap p WHERE p.id = : id");
             query.setParameter("id", id);
@@ -48,4 +50,25 @@ public class NhaCungCapRepository {
         }
     }
 
+    public int genMaNhaCungCap() {
+        String maStr = "";
+        try {
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(Ma,3,10))) from DeGiay";
+            NativeQuery query = session.createNativeQuery(nativeQuery);
+            if (query.getSingleResult() != null) {
+                maStr = query.getSingleResult().toString();
+            } else {
+                maStr = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maStr == null) {
+            maStr = "0";
+            int ma = Integer.parseInt(maStr);
+            return ++ma;
+        }
+        int ma = Integer.parseInt(maStr);
+        return ++ma;
+    }
 }

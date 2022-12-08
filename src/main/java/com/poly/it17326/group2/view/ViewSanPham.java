@@ -282,8 +282,8 @@ public class ViewSanPham extends javax.swing.JFrame {
             txtID.setText(tblSanPham.getValueAt(index, 0).toString());
             txtMaSP.setText(tblSanPham.getValueAt(index, 1).toString());
             txtTenSP.setText(tblSanPham.getValueAt(index, 2).toString());
-            txtTenAnh.setText(tblSanPham.getValueAt(index, 3).toString());
-            txtURL.setText(tblSanPham.getValueAt(index, 4).toString());
+//            txtTenAnh.setText(tblSanPham.getValueAt(index, 3).toString());
+//            txtURL.setText(tblSanPham.getValueAt(index, 4).toString());
             txtNgayTao.setText(tblSanPham.getValueAt(index, 5).toString());
             txtNgaySua.setText(tblSanPham.getValueAt(index, 6).toString());
             cbbTrangThai.setSelectedItem(tblSanPham.getValueAt(index, 7).toString());
@@ -293,8 +293,8 @@ public class ViewSanPham extends javax.swing.JFrame {
             txtID.setText(tblSanPham.getValueAt(index, 0).toString());
             txtMaSP.setText(tblSanPham.getValueAt(index, 1).toString());
             txtTenSP.setText(tblSanPham.getValueAt(index, 2).toString());
-            txtTenAnh.setText(tblSanPham.getValueAt(index, 3).toString());
-            txtURL.setText(tblSanPham.getValueAt(index, 4).toString());
+//            txtTenAnh.setText(tblSanPham.getValueAt(index, 3).toString());
+//            txtURL.setText(tblSanPham.getValueAt(index, 4).toString());
             txtNgayTao.setText(tblSanPham.getValueAt(index, 5).toString());
             txtNgaySua.setText(" ");
             cbbTrangThai.setSelectedItem(tblSanPham.getValueAt(index, 7).toString());
@@ -382,8 +382,8 @@ public class ViewSanPham extends javax.swing.JFrame {
         txtID.setText(null);
         txtMaSP.setText(null);
         txtTenSP.setText(null);
-        txtTenAnh.setText(null);
-        txtURL.setText(null);
+//        txtTenAnh.setText(null);
+//        txtURL.setText(null);
         txtNgayTao.setText(null);
         txtNgaySua.setText(null);
         cbbTrangThai.enable(false);

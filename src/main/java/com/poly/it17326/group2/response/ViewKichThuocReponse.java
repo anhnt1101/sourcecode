@@ -4,7 +4,7 @@
  */
 package com.poly.it17326.group2.response;
 
-import com.poly.it17326.group2.domainmodel.Size;
+import com.poly.it17326.group2.domainmodel.KichThuoc;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,15 +17,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ViewSizeReponse {
+public class ViewKichThuocReponse {
     private String id;
     private String ma;
     private int ten;
 
-    public ViewSizeReponse() {
+    public ViewKichThuocReponse() {
     }
     // maping dữ liệu
-    public ViewSizeReponse(Size size) {
+    public ViewKichThuocReponse(KichThuoc size) {
         this.id = size.getId();
         this.ma = size.getMa();
         this.ten = size.getTen();
