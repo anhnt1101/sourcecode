@@ -45,10 +45,10 @@ create table MauSac(
 	Ma VARCHAR(20) UNIQUE,
 	Ten NVARCHAR(50) DEFAULT NULL
 )
-IF OBJECT_ID('Size') is not null
-drop table Size
+IF OBJECT_ID('KichThuoc') is not null
+drop table KichThuoc
 go
-create table Size(
+create table KichThuoc(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	Ma VARCHAR(20) UNIQUE,
 	Ten INT DEFAULT NULL 
@@ -75,9 +75,7 @@ go
 create table NhaCungCap(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	Ma VARCHAR(20) UNIQUE,
-	Ten NVARCHAR(50) DEFAULT NULL,
-	SDT VARCHAR(10) DEFAULT NULL,
-	DiaChi NVARCHAR(50) DEFAULT NULL
+	Ten NVARCHAR(50) DEFAULT NULL
 )
 IF OBJECT_ID('ChiTietSP') is not null
 drop table ChiTietSP
@@ -89,12 +87,12 @@ create table ChiTietSP(
 	IdSP UNIQUEIDENTIFIER,
 	IdNCC UNIQUEIDENTIFIER,
 	IdThuongHieu UNIQUEIDENTIFIER,
-	IdSize UNIQUEIDENTIFIER,
+	IdKichThuoc UNIQUEIDENTIFIER,
 	IdDeGiay UNIQUEIDENTIFIER,
 	NgayTao DATE DEFAULT NULL,
 	NgaySua DATE DEFAULT NULL,
 	Gia decimal(20,0) DEFAULT NULL,
-	TrangThai INT DEFAULT NULL,
+	TrangThai INT DEFAULT 1,
 	SoLuongTon INT Check (SoLuongTon>= 0)
 )
 
@@ -130,7 +128,7 @@ go
 create table HoaDon(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	IdKM UNIQUEIDENTIFIER,
-	IdTaiKhoan UNIQUEIDENTIFIER,
+	IdNhanVien UNIQUEIDENTIFIER,
 	IdKhachHang UNIQUEIDENTIFIER,
 	Ma VARCHAR(20) UNIQUE,
 	LyDo NVARCHAR(100) DEFAULT NULL,
@@ -140,6 +138,7 @@ create table HoaDon(
 	IdTrangThai UNIQUEIDENTIFIER,
 	TienKhuyenMai decimal(20,0) DEFAULT NULL,
 	TongTien decimal(20,0) DEFAULT NULL,
+	TienTraLai decimal(20,0) DEFAULT NULL
 )
 IF OBJECT_ID('HoaDonChiTiet') is not null
 drop table HoaDonChiTiet
@@ -150,26 +149,26 @@ create table HoaDonChiTiet(
 	IdChiTietSP UNIQUEIDENTIFIER,
 	MaSP VARCHAR(20) DEFAULT NULL,
 	TenSP NVARCHAR(50) DEFAULT NULL,
-	Size INT DEFAULT NULL,
-	Mau VARCHAR(20) DEFAULT NULL,
+	KichThuoc INT DEFAULT NULL,
+	MauSac VARCHAR(20) DEFAULT NULL,
 	SoLuong INT DEFAULT NULL,
 	Gia decimal(20,0) DEFAULT NULL,
 )
 
 --Tạo quan hệ giữa các bảng
 --TaiKhoan
-ALTER TABLE TaiKhoan ADD FOREIGN KEY (IdCV) REFERENCES ChucVu(Id)
+ALTER TABLE NhanVien ADD FOREIGN KEY (IdCV) REFERENCES ChucVu(Id)
 
 --ChiTietSP 
 ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdMauSac) REFERENCES MauSac(Id)
 ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdSP) REFERENCES SanPham(Id)
 ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdNCC) REFERENCES NhaCungCap(Id)
 ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdThuongHieu) REFERENCES ThuongHieu(Id)
-ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdSize) REFERENCES Size(Id)
+ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdKichThuoc) REFERENCES KichThuoc(Id)
 ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdDeGiay) REFERENCES DeGiay(Id)
 
 --HoaDon
-ALTER TABLE HoaDon ADD FOREIGN KEY (IdTaiKhoan) REFERENCES TaiKhoan(Id)
+ALTER TABLE HoaDon ADD FOREIGN KEY (IdNhanVien) REFERENCES NhanVien(Id)
 ALTER TABLE HoaDon ADD FOREIGN KEY (IdTrangThai) REFERENCES TrangThai(Id)
 ALTER TABLE HoaDon ADD FOREIGN KEY (IdKhachHang) REFERENCES KhachHang(Id)
 
@@ -179,7 +178,7 @@ ALTER TABLE HoaDonChiTiet ADD FOREIGN KEY (IdChiTietSP) REFERENCES ChiTietSP(Id)
 
 --Select all table
 select * from ChucVu
-select * from TaiKhoan
+select * from NhanVien
 select * from HoaDon
 select * from TrangThai
 select * from HoaDonChiTiet
@@ -191,7 +190,7 @@ update MauSac
 set Ten = N'Xám'
 where  id = '492F96FF-F4F9-4F56-9434-4843C310BBA1'
 delete from MauSac where  id = 'D56AFEAE-911B-4483-B7F4-313B1CD64735'
-select * from Size
+select * from KichThuoc
 select * from ThuongHieu
 select * from NhaCungCap
 select * from TrangThai

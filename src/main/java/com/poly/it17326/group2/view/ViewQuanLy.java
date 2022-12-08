@@ -18,7 +18,14 @@ public class ViewQuanLy extends javax.swing.JFrame {
      */
     public ViewQuanLy() {
         initComponents();
-
+        pnlSanPham.setBackground(Color.WHITE);
+        menuSanPham.setForeground(new Color(0,0,0));
+        SanPham sanPham = new SanPham();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(sanPham);
+        pnlQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        pnlQuanLy.setVisible(true);
     }
 
     /**
@@ -31,7 +38,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlTong = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        pnlMenu = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
@@ -53,11 +60,11 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuThoat = new javax.swing.JLabel();
         pnlKhachHang = new javax.swing.JPanel();
         menuKhachHang = new javax.swing.JLabel();
-        pblQuanLy = new javax.swing.JPanel();
+        pnlQuanLy = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        pnlMenu.setBackground(new java.awt.Color(255, 204, 204));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin cá nhân", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 15))); // NOI18N
@@ -259,12 +266,12 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addComponent(menuKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -274,9 +281,9 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addComponent(pnlDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
@@ -291,18 +298,18 @@ public class ViewQuanLy extends javax.swing.JFrame {
                 .addComponent(pnlDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlThoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 88, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pblQuanLyLayout = new javax.swing.GroupLayout(pblQuanLy);
-        pblQuanLy.setLayout(pblQuanLyLayout);
-        pblQuanLyLayout.setHorizontalGroup(
-            pblQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1269, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlQuanLyLayout = new javax.swing.GroupLayout(pnlQuanLy);
+        pnlQuanLy.setLayout(pnlQuanLyLayout);
+        pnlQuanLyLayout.setHorizontalGroup(
+            pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1293, Short.MAX_VALUE)
         );
-        pblQuanLyLayout.setVerticalGroup(
-            pblQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+        pnlQuanLyLayout.setVerticalGroup(
+            pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlTongLayout = new javax.swing.GroupLayout(pnlTong);
@@ -310,14 +317,14 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlTongLayout.setHorizontalGroup(
             pnlTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTongLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pblQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTongLayout.setVerticalGroup(
             pnlTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pblQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -345,6 +352,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
 
     private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
         pnlSanPham.setBackground(Color.WHITE);
+        pnlSanPham.setBackground(Color.WHITE);
         menuSanPham.setForeground(new Color(0,0,0));
         menuBanHang.setForeground(Color.BLACK);
         menuNhanVien.setForeground(Color.BLACK);
@@ -357,13 +365,12 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlNhanVien.setBackground(null);
         pnlKhachHang.setBackground(null);
         pnlBanHang.setBackground(null);
-        NewJPanel viewDoiTra = new NewJPanel();
-        pblQuanLy.removeAll();
-        pblQuanLy.add(viewDoiTra);
-        pblQuanLy.setLayout(new FlowLayout());
+        SanPham sanPham = new SanPham();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(sanPham);
+        pnlQuanLy.setLayout(new FlowLayout());
         this.pack();
-        //ViewBanHang.webcam.close();
-        pblQuanLy.setVisible(true);
+        pnlQuanLy.setVisible(true);
     }//GEN-LAST:event_menuSanPhamMouseClicked
 
     private void menuBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBanHangMouseClicked
@@ -381,12 +388,11 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlKhachHang.setBackground(null);
         pnlSanPham.setBackground(null);
         BanHang banHang = new BanHang();
-        pblQuanLy.removeAll();
-        pblQuanLy.add(banHang);
-        pblQuanLy.setLayout(new FlowLayout());
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(banHang);
+        pnlQuanLy.setLayout(new FlowLayout());
         this.pack();
-        //ViewBanHang.webcam.close();
-        pblQuanLy.setVisible(true);
+        pnlQuanLy.setVisible(true);
     }//GEN-LAST:event_menuBanHangMouseClicked
 
     private void menuBanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBanHangMouseEntered
@@ -433,7 +439,6 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNgayGio;
     private javax.swing.JLabel lblNgayGio1;
@@ -443,11 +448,12 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel menuNhanVien;
     private javax.swing.JLabel menuSanPham;
     private javax.swing.JLabel menuThoat;
-    private javax.swing.JPanel pblQuanLy;
     private javax.swing.JPanel pnlBanHang;
     private javax.swing.JPanel pnlDangXuat;
     private javax.swing.JPanel pnlKhachHang;
+    private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlNhanVien;
+    private javax.swing.JPanel pnlQuanLy;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlThoat;
     private javax.swing.JPanel pnlTong;
