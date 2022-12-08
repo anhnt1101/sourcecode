@@ -33,8 +33,6 @@ create table SanPham(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	MaSP VARCHAR(20) UNIQUE,
 	TenSP NVARCHAR(50) DEFAULT NULL ,
-	URL NVARCHAR(MAX)  DEFAULT NULL,
-	TenAnh NVARCHAR(100) DEFAULT NULL,
 	NgayTao DATE DEFAULT NULL,
 	NgaySua DATE DEFAULT NULL,
 	TrangThai INT DEFAULT 1
@@ -86,6 +84,7 @@ drop table ChiTietSP
 go
 create table ChiTietSP(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+	MaChiTietSP VARCHAR(20) UNIQUE,
 	IdMauSac UNIQUEIDENTIFIER,
 	IdSP UNIQUEIDENTIFIER,
 	IdNCC UNIQUEIDENTIFIER,
@@ -98,6 +97,8 @@ create table ChiTietSP(
 	TrangThai INT DEFAULT NULL,
 	SoLuongTon INT Check (SoLuongTon>= 0)
 )
+
+
 IF OBJECT_ID('TrangThai') is not null
 drop table TrangThai
 go
@@ -108,6 +109,21 @@ create table TrangThai(
 	NgayTao DATE DEFAULT NULL,
 	NgaySua DATE DEFAULT NULL
 )
+IF OBJECT_ID('KhachHang') is not null
+drop table KhachHang
+go
+create table KhachHang(
+	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+	Ma VARCHAR(20) UNIQUE,
+	HoTen NVARCHAR(100) DEFAULT NULL,
+	GioiTinh int DEFAULT NULL,
+	NgaySinh DATE DEFAULT NULL,
+	Sdt VARCHAR(20) DEFAULT NULL,
+	DiaChi NVARCHAR(125) DEFAULT NULL,
+	CapBac int DEFAULT NULL,
+	NgayTao DATE DEFAULT NULL,
+	NgaySua DATE DEFAULT NULL
+)
 IF OBJECT_ID('HoaDon') is not null
 drop table HoaDon
 go
@@ -115,6 +131,7 @@ create table HoaDon(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	IdKM UNIQUEIDENTIFIER,
 	IdTaiKhoan UNIQUEIDENTIFIER,
+	IdKhachHang UNIQUEIDENTIFIER,
 	Ma VARCHAR(20) UNIQUE,
 	NgayTao DATE DEFAULT NULL,
 	NgayThanhToan DATE DEFAULT NULL,
@@ -153,6 +170,7 @@ ALTER TABLE ChiTietSP ADD FOREIGN KEY (IdDeGiay) REFERENCES DeGiay(Id)
 --HoaDon
 ALTER TABLE HoaDon ADD FOREIGN KEY (IdTaiKhoan) REFERENCES TaiKhoan(Id)
 ALTER TABLE HoaDon ADD FOREIGN KEY (IdTrangThai) REFERENCES TrangThai(Id)
+ALTER TABLE HoaDon ADD FOREIGN KEY (IdKhachHang) REFERENCES KhachHang(Id)
 
 --HoaDonChiTiet
 ALTER TABLE HoaDonChiTiet ADD FOREIGN KEY (IdHoaDon) REFERENCES HoaDon(Id)
@@ -168,6 +186,10 @@ select * from ChiTietSP
 select * from SanPham
 select * from DeGiay
 select * from MauSac
+update MauSac
+set Ten = N'Xám'
+where  id = '492F96FF-F4F9-4F56-9434-4843C310BBA1'
+delete from MauSac where  id = 'D56AFEAE-911B-4483-B7F4-313B1CD64735'
 select * from Size
 select * from ThuongHieu
 select * from NhaCungCap
@@ -227,9 +249,9 @@ insert into DeGiay(Ma, Ten) values ('DG01', 'De cao')
 insert into DeGiay(Ma, Ten) values ('DG02', 'De thap')
 insert into DeGiay(Ma, Ten) values ('DG03', 'Cao co')
 --insert data table sanPham
-insert into SanPham(MaSP, TenSP,TenAnh,URL, NgayTao, TrangThai) values ('SP1', 'Nike AF1','Nike AF1.jpg','C:\Users\nguye\Downloads\Nike AF1.jpg', GETDATE(), 1)
-insert into SanPham(MaSP, TenSP,TenAnh,URL, NgayTao, TrangThai) values ('SP2', 'Converse Caro','ConverseCaro.jpg','C:\Users\nguye\Downloads\ConverseCaro.jpg', GETDATE(), 1)
-insert into SanPham(MaSP, TenSP,TenAnh,URL, NgayTao, TrangThai) values ('SP03', 'Adidas Super Star','Adidas Super Star.jpg','C:\Users\nguye\Downloads\Adidas Super Star.jpg', GETDATE(), 1)
+insert into SanPham(MaSP, TenSP, NgayTao, TrangThai) values ('SP1', 'Nike AF1','Nike AF1.jpg','C:\Users\nguye\Downloads\Nike AF1.jpg', GETDATE(), 1)
+insert into SanPham(MaSP, TenSP, NgayTao, TrangThai) values ('SP2', 'Converse Caro','ConverseCaro.jpg','C:\Users\nguye\Downloads\ConverseCaro.jpg', GETDATE(), 1)
+insert into SanPham(MaSP, TenSP, NgayTao, TrangThai) values ('SP03', 'Adidas Super Star','Adidas Super Star.jpg','C:\Users\nguye\Downloads\Adidas Super Star.jpg', GETDATE(), 1)
 --insert data table chitietSp
 insert into ChiTietSP(IdMauSac, IdSP, IdNCC, IdThuongHieu, IdSize, IdDeGiay, NgayTao, Gia, SoLuongTon, TrangThai) 
 values ('492F96FF-F4F9-4F56-9434-4843C310BBA1', '95D59CEB-3245-473B-8CF1-3282FDF9507E',
@@ -254,15 +276,25 @@ select * from ChiTietSp
 select * from MauSac
 select * from TrangThai
 select * from SanPham
-delete from HoaDon where IdTaiKhoan = 'CFDB9867-DB1B-4290-BE42-66A5B37DE952'
+
+
+ALTER TABLE hoadonchitiet  
+DROP CONSTRAINT [FK__HoaDonChi__IdHoa__2FCF1A8A];   
+
+delete from HoaDonChiTiet where id = 'E379B1E5-CACE-45B4-99D0-FB70A5451CA9'
+
 UPDATE SanPham
 SET MaSP = 'SP3'
 where Id = '3BE567BA-5BAA-43BD-9D4F-3443D47E51CD'
+
 delete from ChiTietSP where id = 'DB9FD66A-D4D0-4C25-90B6-DE2EF66CB30D'
+
 SELECT Ma, NgayTao, IdTaiKhoan, IdTrangThai from HoaDon where IdTaiKhoan = '589ABB65-09D3-46A7-8256-0515A06EAA95'
+
 insert into HoaDon(IdTaiKhoan,Ma,NgayTao,IdTrangThai) 
 values('589ABB65-09D3-46A7-8256-0515A06EAA95','HD02',GETDATE(),'F397189B-D378-4E86-86CD-A6D3D5856790')
-delete HoaDon where Id = 'E35603E9-250E-483F-AE7A-A4D4CC91CE45'
+
+delete HoaDonChiTiet where Id = 'D4A619E4-4617-4877-903F-EA9C6CFCA4A9'
 
 
 update HoaDon set IdTrangThai = 'A5519622-B222-4DD8-A5FE-0B1D19802EF2' where Ma = 'HD01'
@@ -270,7 +302,7 @@ select * from HoaDon
 delete from HoaDon where Id ='B90A5F52-B94F-4C77-B781-152E28232B0D'
 
 select * from ChiTietSP
-update ChiTietSP set SoLuongTon = 200where Id = '413CA52C-C31D-4A14-898E-CED856424BAB'
+update ChiTietSP set IdMauSac = '65D258C1-8756-4F1E-837B-6F0F9C84CFB5' where Id = '0545D187-7B8C-4726-869B-DE78D7EAC2D6'
 
 
 
