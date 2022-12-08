@@ -10,21 +10,21 @@ create table ChucVu(
 	Ma VARCHAR(20) UNIQUE,
 	Ten NVARCHAR(50) DEFAULT NULL 
 )
-IF OBJECT_ID('TaiKhoan') is not null
-drop table TaiKhoan
+IF OBJECT_ID('NhanVien') is not null
+drop table NhanVien
 go
-create table TaiKhoan(
+create table NhanVien(
 	Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
 	Ma VARCHAR(20) UNIQUE,
 	HoTen NVARCHAR(30) DEFAULT NULL,
-	TenTaiKhoan VARCHAR(30) UNIQUE,
 	NgayTao DATE DEFAULT NULL,
 	NgaySua DATE DEFAULT NULL,
+	Email varchar(50) DEFAULT NULL,
 	CCCD VARCHAR(12) DEFAULT NULL,
 	Sdt VARCHAR(30) DEFAULT NULL,
 	MatKhau VARCHAR(MAX) DEFAULT NULL,
 	IdCV UNIQUEIDENTIFIER,
-	TrangThai INT DEFAULT NULL
+	TrangThai INT DEFAULT 1
 )
 IF OBJECT_ID('SanPham') is not null
 drop table SanPham
@@ -133,6 +133,7 @@ create table HoaDon(
 	IdTaiKhoan UNIQUEIDENTIFIER,
 	IdKhachHang UNIQUEIDENTIFIER,
 	Ma VARCHAR(20) UNIQUE,
+	LyDo NVARCHAR(100) DEFAULT NULL,
 	NgayTao DATE DEFAULT NULL,
 	NgayThanhToan DATE DEFAULT NULL,
 	NgaySua DATE DEFAULT NULL,
