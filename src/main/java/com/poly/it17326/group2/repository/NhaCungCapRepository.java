@@ -53,7 +53,7 @@ public class NhaCungCapRepository {
     public int genMaNhaCungCap() {
         String maStr = "";
         try {
-            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(Ma,3,10))) from DeGiay";
+            String nativeQuery = "SELECT MAX(CONVERT(INT, SUBSTRING(Ma,4,10))) from NhaCungCap";
             NativeQuery query = session.createNativeQuery(nativeQuery);
             if (query.getSingleResult() != null) {
                 maStr = query.getSingleResult().toString();

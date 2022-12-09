@@ -26,7 +26,7 @@ import lombok.ToString;
  * @author haodqph27423
  */
 @Entity
-@Table(name = "Size")
+@Table(name = "KichThuoc")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -45,7 +45,7 @@ public class KichThuoc implements Serializable {
     @Column(name = "Ten")
     private int ten;
 
-    @OneToMany(mappedBy = "size", cascade = CascadeType.ALL,
+    @OneToMany(mappedBy = "kichThuoc", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<ChiTietSP> listChiTietSP;
    

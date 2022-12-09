@@ -186,7 +186,10 @@ select * from ChiTietSP
 select * from SanPham
 select * from DeGiay
 select * from MauSac
+select * from KichThuoc
 select * from ThuongHieu
+select * from NhaCungCap
+select * from TrangThai
 
 delete from SanPham where id = 'A632085F-1C50-41C2-99D6-FC31847D6CC1'
 
@@ -194,10 +197,7 @@ update MauSac
 set Ten = N'Xám'
 where  id = '492F96FF-F4F9-4F56-9434-4843C310BBA1'
 delete from MauSac where  id = 'D56AFEAE-911B-4483-B7F4-313B1CD64735'
-select * from KichThuoc
-select * from ThuongHieu
-select * from NhaCungCap
-select * from TrangThai
+
 
 --Insert Data table ChucVu
 insert into ChucVu(Ma, Ten) values ('QL01',N'Quản lí')
@@ -230,11 +230,11 @@ insert into ThuongHieu(Ma, Ten) values ('TH02', 'Balenciaga')
 insert into ThuongHieu(Ma, Ten) values ('TH03', 'Nike')
 insert into ThuongHieu(Ma, Ten) values ('TH04', 'Converse')
 --insert data table size
-insert into Size(Ma, Ten) values ('S01', 39)
-insert into Size(Ma, Ten) values ('S02', 40)
-insert into Size(Ma, Ten) values ('S03', 41)
-insert into Size(Ma, Ten) values ('S04', 42)
-insert into Size(Ma, Ten) values ('S05', 43)
+insert into KichThuoc( Ten) values (39)
+insert into KichThuoc( Ten) values (40)
+insert into KichThuoc( Ten) values (41)
+insert into KichThuoc( Ten) values (42)
+insert into KichThuoc( Ten) values (43)
 --insert data table nhacungcap
 insert into NhaCungCap(Ma, Ten, SDT, DiaChi) 
 values  ('NCC01', 'Giay Nam Viet', '0987586804', 'Ha Noi')

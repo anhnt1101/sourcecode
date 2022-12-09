@@ -50,8 +50,8 @@ public class ChiTietSP implements Serializable {
     private ThuongHieu thuongHieu;
 
     @ManyToOne
-    @JoinColumn(name = "IdSize")
-    private KichThuoc size;
+    @JoinColumn(name = "IdKichThuoc")
+    private KichThuoc kichThuoc;
 
     @ManyToOne
     @JoinColumn(name = "IdDeGiay")

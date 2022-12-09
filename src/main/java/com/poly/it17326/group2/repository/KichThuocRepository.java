@@ -24,16 +24,16 @@ public class KichThuocRepository {
     public List<KichThuoc> getListFromDB() {
         List<KichThuoc> list;
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
-            TypedQuery<KichThuoc> query = session.createQuery("SELECT p FROM Size p", KichThuoc.class);
+            TypedQuery<KichThuoc> query = session.createQuery("SELECT p FROM KichThuoc p", KichThuoc.class);
             list = query.getResultList();
         }
         return list;
     }
 
-    public Boolean addNew(KichThuoc size) {
+    public Boolean addNew(KichThuoc kichThuoc) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(size);
+            session.saveOrUpdate(kichThuoc);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -41,10 +41,10 @@ public class KichThuocRepository {
         }
     }
 
-    public Boolean upDate(KichThuoc size) {
+    public Boolean upDate(KichThuoc kichThuoc) {
         try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(size);
+            session.saveOrUpdate(kichThuoc);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class KichThuocRepository {
     public Boolean delete(String id) {
         try ( Session se = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = se.beginTransaction();
-            Query query = se.createQuery("DELETE Size p WHERE p.id = :id");
+            Query query = se.createQuery("DELETE KichThuoc p WHERE p.id = :id");
             query.setParameter("id", id);
             query.executeUpdate();
             transaction.commit();

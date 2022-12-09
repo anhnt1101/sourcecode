@@ -106,7 +106,7 @@ public class ViewBanHang extends javax.swing.JFrame {
             dtmChiTietSp.addRow(new Object[]{
                 chiTietSPResponse.getMaSP(), chiTietSPResponse.getTenSP(),
                 chiTietSPResponse.getThuongHieu(), chiTietSPResponse.getNCC(),
-                chiTietSPResponse.getMauSac(), chiTietSPResponse.getSize(),
+                chiTietSPResponse.getMauSac(), chiTietSPResponse.getKichThuoc(),
                 chiTietSPResponse.getDeGiay(), chiTietSPResponse.getSoLuongTon(),
                 chiTietSPResponse.getGia()});
         }
@@ -120,7 +120,7 @@ public class ViewBanHang extends javax.swing.JFrame {
             dtmChiTietSp.addRow(new Object[]{
                 chiTietSPResponse.getMaSP(), chiTietSPResponse.getTenSP(),
                 chiTietSPResponse.getThuongHieu(), chiTietSPResponse.getNCC(),
-                chiTietSPResponse.getMauSac(), chiTietSPResponse.getSize(),
+                chiTietSPResponse.getMauSac(), chiTietSPResponse.getKichThuoc(),
                 chiTietSPResponse.getDeGiay(), chiTietSPResponse.getSoLuongTon(),
                 chiTietSPResponse.getGia()});
         }

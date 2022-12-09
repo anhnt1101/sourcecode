@@ -79,4 +79,9 @@ public class ChiTietSPServiceImpl implements ChiTietSPService {
         return listTimKiem;
     }
 
+    @Override
+    public int genMaCTSPTuDong() {
+        return chiTietSPRepository.genMaCTSP();
+    }
+    
 }

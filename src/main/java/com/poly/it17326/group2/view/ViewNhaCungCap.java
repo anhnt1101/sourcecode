@@ -22,7 +22,7 @@ public class ViewNhaCungCap extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"ID", "Mã", "Tên", "SDT", "Địa Chỉ"});
         for (ViewNhaCungCapResponse x : list) {
-            Object[] row = new Object[]{x.getId(), x.getMa(), x.getTen(), x.getSdt(), x.getTen()};
+            Object[] row = new Object[]{x.getId(), x.getMa(), x.getTen()};
             model.addRow(row);
         }
         tblNhaCungCap.setModel(model);
@@ -213,8 +213,7 @@ public class ViewNhaCungCap extends javax.swing.JFrame {
         NhaCungCap ncc = new NhaCungCap();
         ncc.setMa(txtMa.getText());
         ncc.setTen(txtTen.getText());
-        ncc.setSdt(txtSDT.getText());
-        ncc.setDiaChi(txtDiaChi.getText());
+
           if (nhaCungCapService.create(ncc)) {
             JOptionPane.showMessageDialog(this, "Thêm thất bại");
         } else {
@@ -237,8 +236,6 @@ public class ViewNhaCungCap extends javax.swing.JFrame {
         ncc.setId(txtID.getText());
         ncc.setMa(txtMa.getText());
         ncc.setTen(txtTen.getText());
-        ncc.setSdt(txtSDT.getText());
-        ncc.setDiaChi(txtDiaChi.getText());
         if (nhaCungCapService.update(ncc)) {
             JOptionPane.showMessageDialog(this, "Sửa thành công");
             loadData(nhaCungCapService.getAll());

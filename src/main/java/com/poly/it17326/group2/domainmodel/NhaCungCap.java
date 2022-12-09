@@ -41,12 +41,6 @@ public class NhaCungCap implements Serializable {
     @Column(name = "Ten")
     private String ten;
 
-    @Column(name = "SDT")
-    private String sdt;
-
-    @Column(name = "DiaChi")
-    private String diaChi;
-
     @OneToMany(mappedBy = "nhaCungCap", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<ChiTietSP> listChiTietSP;

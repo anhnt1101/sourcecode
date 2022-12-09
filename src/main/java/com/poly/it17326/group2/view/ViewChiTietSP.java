@@ -137,7 +137,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
             dtm.addRow(new Object[]{
                 response.getMaSP(), response.getTenSP(), response.getMauSac(),
                 response.getThuongHieu(), response.getNCC(), response.getDeGiay(),
-                response.getSize(), response.getGia(), response.getSoLuongTon(),
+                response.getKichThuoc(), response.getGia(), response.getSoLuongTon(),
                 response.hTTrangThai()
             });
         }
@@ -645,7 +645,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
 
         int soSize = cbbSize.getSelectedIndex();
         KichThuoc size = chiTietSPService.getSize().get(soSize);
-        ctsp.setSize(size);
+        ctsp.setKichThuoc(size);
 
         ctsp.setGia(BigDecimal.valueOf(Double.valueOf(txtGia.getText())));
         ctsp.setSoLuongTon(Integer.parseInt(txtSoLuongTon.getText()));
@@ -774,7 +774,7 @@ public class ViewChiTietSP extends javax.swing.JFrame {
 
         int soSize = cbbSize.getSelectedIndex();
         KichThuoc size = chiTietSPService.getSize().get(soSize);
-        ctsp.setSize(size);
+        ctsp.setKichThuoc(size);
 
         ctsp.setGia(BigDecimal.valueOf(Double.valueOf(txtGia.getText())));
         Integer soLuong = Integer.parseInt(txtSoLuongTon.getText());

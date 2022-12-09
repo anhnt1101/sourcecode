@@ -17,26 +17,20 @@ public class ViewNhaCungCapResponse {
     private String id;
     private String ma;
     private String ten;
-    private String sdt;
-    private String diaChi;
 
     public ViewNhaCungCapResponse() {
     }
 
-    public ViewNhaCungCapResponse(String id, String ma, String ten, String sdt, String diaChi) {
+    public ViewNhaCungCapResponse(String id, String ma, String ten) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;
-        this.sdt = sdt;
-        this.diaChi = diaChi;
     }
 
     public ViewNhaCungCapResponse(NhaCungCap nhaCungCap) {
         this.id = nhaCungCap.getId();
         this.ma = nhaCungCap.getMa();
         this.ten = nhaCungCap.getTen();
-        this.sdt = nhaCungCap.getSdt();
-        this.diaChi = nhaCungCap.getDiaChi();
     }
 
 }

@@ -25,9 +25,9 @@ public class ViewKichThuocReponse {
     public ViewKichThuocReponse() {
     }
     // maping dữ liệu
-    public ViewKichThuocReponse(KichThuoc size) {
-        this.id = size.getId();
-        this.ma = size.getMa();
-        this.ten = size.getTen();
+    public ViewKichThuocReponse(KichThuoc kichThuoc) {
+        this.id = kichThuoc.getId();
+        this.ma = kichThuoc.getMa();
+        this.ten = kichThuoc.getTen();
     }
 }

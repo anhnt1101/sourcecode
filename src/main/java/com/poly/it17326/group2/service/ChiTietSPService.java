@@ -1,5 +1,6 @@
 package com.poly.it17326.group2.service;
 //
+
 import com.poly.it17326.group2.domainmodel.ChiTietSP;
 import com.poly.it17326.group2.domainmodel.DeGiay;
 import com.poly.it17326.group2.domainmodel.MauSac;
@@ -31,5 +32,6 @@ public interface ChiTietSPService {
     Boolean delete(String id);
 
     List<ViewChiTietSPResponse> timKiem(String ten);
-    
+
+    int genMaCTSPTuDong();
 }
