@@ -37,6 +37,9 @@ public class ChiTietSP implements Serializable {
     @JoinColumn(name = "IdSP")
     private SanPham sanPham;
 
+    @Column(name = "MaChiTietSP")
+    private String maChiTietSP;
+    
     @ManyToOne
     @JoinColumn(name = "IdMauSac")
     private MauSac mauSac;

@@ -20,6 +20,7 @@ import lombok.ToString;
 public class ViewChiTietSPResponse {
 
     private String id;
+    private String maChiTietSP;
     private String maSP;
     private String tenSP;
     private String thuongHieu;
@@ -37,6 +38,7 @@ public class ViewChiTietSPResponse {
 
     public ViewChiTietSPResponse(ChiTietSP chiTietSP) {
         this.id = chiTietSP.getId();
+        this.id = chiTietSP.getMaChiTietSP();
         this.maSP = chiTietSP.getSanPham().getMa();
         this.tenSP = chiTietSP.getSanPham().getTen();
         this.thuongHieu = chiTietSP.getThuongHieu().getTen();
