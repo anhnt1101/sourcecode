@@ -39,5 +39,5 @@ public class ChucVu implements Serializable {
 
     @OneToMany(mappedBy = "chucVu", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
-    private List<TaiKhoan> listTaiKhoan;
+    private List<NhanVien> listTaiKhoan;
 }

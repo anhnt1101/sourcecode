@@ -32,13 +32,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HoaDonChiTiet implements Serializable {
-        
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private String id;
+
     @ManyToOne
     @JoinColumn(name = "IdHoaDon", columnDefinition = "uniqueidentifier")
     private HoaDon hoaDon;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "IdChiTietSP", columnDefinition = "uniqueidentifier")
     private ChiTietSP chiTietSP;
@@ -49,14 +52,14 @@ public class HoaDonChiTiet implements Serializable {
     @Column(name = "TenSP")
     private String tenSp;
 
-    @Column(name = "Size")
-    private Integer size;
+    @Column(name = "KichThuoc")
+    private Integer kichThuoc;
 
-    @Column(name = "Mau")
-    private String mau;
+    @Column(name = "MauSac")
+    private String mauSac;
 
     @Column(name = "Gia")
-    private Double gia;
+    private BigDecimal gia;
 
     @Column(name = "SoLuong")
     private Integer soLuong;

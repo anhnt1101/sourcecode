@@ -4,7 +4,7 @@ import com.poly.it17326.group2.domainmodel.ChiTietSP;
 import com.poly.it17326.group2.domainmodel.HoaDon;
 import com.poly.it17326.group2.domainmodel.HoaDonChiTiet;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.TaiKhoan;
+import com.poly.it17326.group2.domainmodel.NhanVien;
 import com.poly.it17326.group2.domainmodel.TrangThai;
 import com.poly.it17326.group2.response.ViewChiTietSPResponse;
 import com.poly.it17326.group2.response.ViewHoaDonChiTietResponse;
@@ -17,16 +17,13 @@ public interface BanHangService {
 
     List<ViewChiTietSPResponse> getSanPham(String tenSP);
 
-    
-    List<ViewHoaDonChiTietResponse> getHoaDonChiTietByHoaDon(String id);
+    List<ViewHoaDonChiTietResponse> getHoaDonChiTietByHoaDon(String ma);
 
-    List<ViewHoaDonResponse> getHoaDonByUser(String id);
+    List<ViewHoaDonResponse> getHoaDonByMa(String Ma);
 
     Boolean createHDCT(HoaDonChiTiet hoaDonChiTiet);
 
     Boolean createHD(HoaDon hoaDon);
-
-    Boolean updateHD(HoaDon hoaDon, String id);
 
     Boolean updateChiTietSP(ChiTietSP chiTietSP);
 
@@ -40,11 +37,24 @@ public interface BanHangService {
 
     List<HoaDonChiTiet> getAllHDCT();
 
-    List<TaiKhoan> getAllTaiKhoans();
+    List<NhanVien> getAllTaiKhoans();
 
     HoaDon getByMaHD(String maHD);
 
     Boolean updateSLSP(ChiTietSP chiTietSP, String id);
 
     Boolean huyDon(ChiTietSP chiTietSP, String id);
+
+    //////////////////////////////////////////////
+    Boolean updateKhach(HoaDon hoaDon, String id);
+
+    Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHD);
+
+    Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHD);
+
+    Boolean updateGiamSL(ChiTietSP chiTietSP, String id);
+
+    Boolean updateTangSL(ChiTietSP chiTietSP, String id);
+
+    Boolean thanhToan(HoaDon hoaDon, String id);
 }

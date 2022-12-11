@@ -43,7 +43,7 @@ public class KichThuoc implements Serializable {
     private String ma;
 
     @Column(name = "Ten")
-    private int ten;
+    private String ten;
 
     @OneToMany(mappedBy = "kichThuoc", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)

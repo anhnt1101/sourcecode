@@ -44,10 +44,13 @@ public class HoaDon implements Serializable {
 
 //    @Column(name = "IdKM")
 //    private String idKM;
+    @ManyToOne
+    @JoinColumn(name = "IdKhachHang")
+    private KhachHang khachHang;
 
     @ManyToOne
-    @JoinColumn(name = "IdTaiKhoan")
-    private TaiKhoan taiKhoan;
+    @JoinColumn(name = "IdNhanVien")
+    private NhanVien nhanVien;
 
     @Column(name = "Ma")
     private String ma;
@@ -68,10 +71,16 @@ public class HoaDon implements Serializable {
     @Column(name = "TienKhuyenMai")
     private BigDecimal tienKM;
 
+    @Column(name = "TienTraLai")
+    private BigDecimal tienTraLai;
+
     @Column(name = "TongTien")
     private BigDecimal tongTien;
 
-    @OneToMany(mappedBy = "hoaDon",cascade = CascadeType.ALL,
+    @Column(name = "LyDo")
+    private String lyDo;
+
+    @OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<HoaDonChiTiet> listHDCT;
 }

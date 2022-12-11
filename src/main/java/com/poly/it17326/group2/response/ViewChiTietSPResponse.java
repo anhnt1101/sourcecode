@@ -26,7 +26,7 @@ public class ViewChiTietSPResponse {
     private String thuongHieu;
     private String NCC;
     private String mauSac;
-    private int kichThuoc;
+    private String kichThuoc;
     private String deGiay;
     private int soLuongTon;
     private BigDecimal gia;
@@ -38,7 +38,7 @@ public class ViewChiTietSPResponse {
 
     public ViewChiTietSPResponse(ChiTietSP chiTietSP) {
         this.id = chiTietSP.getId();
-        this.id = chiTietSP.getMaChiTietSP();
+        this.maChiTietSP = chiTietSP.getMaChiTietSP();
         this.maSP = chiTietSP.getSanPham().getMa();
         this.tenSP = chiTietSP.getSanPham().getTen();
         this.thuongHieu = chiTietSP.getThuongHieu().getTen();

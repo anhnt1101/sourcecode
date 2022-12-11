@@ -4,14 +4,14 @@ import com.poly.it17326.group2.domainmodel.ChiTietSP;
 import com.poly.it17326.group2.domainmodel.HoaDon;
 import com.poly.it17326.group2.domainmodel.HoaDonChiTiet;
 import com.poly.it17326.group2.domainmodel.SanPham;
-import com.poly.it17326.group2.domainmodel.TaiKhoan;
+import com.poly.it17326.group2.domainmodel.NhanVien;
 import com.poly.it17326.group2.domainmodel.TrangThai;
 import com.poly.it17326.group2.repository.BanHangRepository;
 import com.poly.it17326.group2.repository.ChiTietSPRepository;
 import com.poly.it17326.group2.repository.HoaDonChiTietRepository;
 import com.poly.it17326.group2.repository.HoaDonRepository;
 import com.poly.it17326.group2.repository.SanPhamRepository;
-import com.poly.it17326.group2.repository.TaiKhoanRepository;
+import com.poly.it17326.group2.repository.NhanVienRepository;
 import com.poly.it17326.group2.repository.TrangThaiRepository;
 import com.poly.it17326.group2.response.ViewChiTietSPResponse;
 import com.poly.it17326.group2.response.ViewHoaDonChiTietResponse;
@@ -34,7 +34,7 @@ public class BanHangServiceImpl implements BanHangService {
 
     private SanPhamRepository sanPhamRepository = new SanPhamRepository();
 
-    private TaiKhoanRepository taiKhoanRepository = new TaiKhoanRepository();
+    private NhanVienRepository taiKhoanRepository = new NhanVienRepository();
 
     @Override
     public List<ViewChiTietSPResponse> getAllChiTietSP() {
@@ -48,9 +48,9 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public List<ViewHoaDonChiTietResponse> getHoaDonChiTietByHoaDon(String id) {
+    public List<ViewHoaDonChiTietResponse> getHoaDonChiTietByHoaDon(String ma) {
         List<ViewHoaDonChiTietResponse> response = new ArrayList<>();
-        List<HoaDonChiTiet> list = banHangRepository.getHDCTByHoaDon(id);
+        List<HoaDonChiTiet> list = banHangRepository.getHDCTByHoaDon(ma);
         for (HoaDonChiTiet hoaDonChiTiet : list) {
             ViewHoaDonChiTietResponse viewHoaDonChiTietResponse = new ViewHoaDonChiTietResponse(hoaDonChiTiet);
             response.add(viewHoaDonChiTietResponse);
@@ -59,11 +59,11 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public List<ViewHoaDonResponse> getHoaDonByUser(String id) {
+    public List<ViewHoaDonResponse> getHoaDonByMa(String ma) {
         List<ViewHoaDonResponse> response = new ArrayList<>();
-        List<HoaDon> list = banHangRepository.getHoaDonByUser(id);
+        List<HoaDon> list = banHangRepository.getHoaDonByMa(ma);
         for (HoaDon hoaDon : list) {
-            if (hoaDon.getTaiKhoan().getTenTaiKhoan().equals(id)) {
+            if (hoaDon.getNhanVien().getMa().equals(ma)) {
                 ViewHoaDonResponse viewHoaDonResponse = new ViewHoaDonResponse(hoaDon);
                 response.add(viewHoaDonResponse);
             }
@@ -86,7 +86,6 @@ public class BanHangServiceImpl implements BanHangService {
         return chiTietSPRepository.add(chiTietSP);
     }
 
-
     @Override
     public List<TrangThai> getAllTrangThai() {
         return trangThaiRepository.getAll();
@@ -108,7 +107,7 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public List<TaiKhoan> getAllTaiKhoans() {
+    public List<NhanVien> getAllTaiKhoans() {
         return taiKhoanRepository.getAll();
     }
 
@@ -136,8 +135,8 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public Boolean updateHD(HoaDon hoaDon, String id) {
-        return banHangRepository.updateHD(hoaDon, id);
+    public Boolean thanhToan(HoaDon hoaDon, String id) {
+        return banHangRepository.thanhToan(hoaDon, id);
     }
 
     @Override
@@ -147,7 +146,32 @@ public class BanHangServiceImpl implements BanHangService {
 
     @Override
     public Boolean huyDon(ChiTietSP chiTietSP, String id) {
-       return banHangRepository.huyDon(chiTietSP, id);
+        return banHangRepository.huyDon(chiTietSP, id);
+    }
+//////////////////////////////////////////////////////////////////
+    @Override
+    public Boolean updateKhach(HoaDon hoaDon, String id) {
+        return banHangRepository.updateKhach(hoaDon, id);
+    }
+
+    @Override
+    public Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
+        return banHangRepository.tangSL(hoaDonChiTiet, idHD);
+    }
+
+    @Override
+    public Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
+        return banHangRepository.giamSL(hoaDonChiTiet, idHD);
+    }
+
+    @Override
+    public Boolean updateGiamSL(ChiTietSP chiTietSP, String id) {
+        return banHangRepository.upadteGiamSP(chiTietSP, id);
+    }
+
+    @Override
+    public Boolean updateTangSL(ChiTietSP chiTietSP, String id) {
+        return banHangRepository.upadteTangSP(chiTietSP, id);
     }
 
 }

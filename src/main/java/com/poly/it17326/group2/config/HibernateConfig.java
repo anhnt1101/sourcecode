@@ -5,11 +5,13 @@ import com.poly.it17326.group2.domainmodel.ChucVu;
 import com.poly.it17326.group2.domainmodel.DeGiay;
 import com.poly.it17326.group2.domainmodel.HoaDon;
 import com.poly.it17326.group2.domainmodel.HoaDonChiTiet;
+import com.poly.it17326.group2.domainmodel.KhachHang;
 import com.poly.it17326.group2.domainmodel.MauSac;
 import com.poly.it17326.group2.domainmodel.NhaCungCap;
 import com.poly.it17326.group2.domainmodel.SanPham;
 import com.poly.it17326.group2.domainmodel.KichThuoc;
-import com.poly.it17326.group2.domainmodel.TaiKhoan;
+import com.poly.it17326.group2.domainmodel.NhanVien;
+import com.poly.it17326.group2.domainmodel.KhachHang;
 import com.poly.it17326.group2.domainmodel.ThuongHieu;
 import com.poly.it17326.group2.domainmodel.TrangThai;
 import org.hibernate.SessionFactory;
@@ -35,7 +37,8 @@ public class HibernateConfig {
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(ChucVu.class);
-        conf.addAnnotatedClass(TaiKhoan.class);
+        conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(DeGiay.class);
         conf.addAnnotatedClass(MauSac.class);
         conf.addAnnotatedClass(KichThuoc.class);

@@ -69,9 +69,9 @@ public class ChiTietSPServiceImpl implements ChiTietSPService {
     }
 
     @Override
-    public List<ViewChiTietSPResponse> timKiem(String ten) {
+    public List<ViewChiTietSPResponse> timKiem(String tenSP) {
         List<ViewChiTietSPResponse> listTimKiem = new ArrayList<>();
-        List<ChiTietSP> list = chiTietSPRepository.getAll();
+        List<ChiTietSP> list = chiTietSPRepository.timKiem(tenSP);
         for (ChiTietSP chiTietSP : list) {
             ViewChiTietSPResponse chiTietSPResponse = new ViewChiTietSPResponse(chiTietSP);
             listTimKiem.add(chiTietSPResponse);

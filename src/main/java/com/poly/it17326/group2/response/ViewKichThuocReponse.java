@@ -20,7 +20,7 @@ import lombok.ToString;
 public class ViewKichThuocReponse {
     private String id;
     private String ma;
-    private int ten;
+    private String ten;
 
     public ViewKichThuocReponse() {
     }

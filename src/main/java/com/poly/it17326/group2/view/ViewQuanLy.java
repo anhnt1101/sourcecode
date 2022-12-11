@@ -4,8 +4,12 @@
  */
 package com.poly.it17326.group2.view;
 
+import com.poly.it17326.group2.domainmodel.NhanVien;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -15,17 +19,29 @@ public class ViewQuanLy extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewTong
+     *
+     * @param
      */
-    public ViewQuanLy() {
+    private NhanVien nhanVien = new NhanVien();
+
+    public ViewQuanLy(NhanVien nv) {
         initComponents();
         pnlSanPham.setBackground(Color.WHITE);
-        menuSanPham.setForeground(new Color(0,0,0));
-        QuanLySanPham sanPham = new QuanLySanPham();
+        menuSanPham.setForeground(new Color(0, 0, 0));
+        nhanVien = nv;
+        ViewQuanLySanPham sanPham = new ViewQuanLySanPham();
         pnlQuanLy.removeAll();
         pnlQuanLy.add(sanPham);
         pnlQuanLy.setLayout(new FlowLayout());
         this.pack();
         pnlQuanLy.setVisible(true);
+
+        ImageIcon imgicon = new ImageIcon("src\\main\\resources\\image\\shoes.png");
+        this.setIconImage(imgicon.getImage());
+        
+        txtMaNV.setText(nhanVien.getMa());
+        txtTenNV.setText(nhanVien.getHoTen());
+        txtChucVu.setText(nhanVien.getChucVu().getTen());
     }
 
     /**
@@ -52,14 +68,16 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuBanHang = new javax.swing.JLabel();
         pnlSanPham = new javax.swing.JPanel();
         menuSanPham = new javax.swing.JLabel();
-        pnlNhanVien = new javax.swing.JPanel();
-        menuNhanVien = new javax.swing.JLabel();
         pnlDangXuat = new javax.swing.JPanel();
         menuDangXuat = new javax.swing.JLabel();
         pnlThoat = new javax.swing.JPanel();
         menuThoat = new javax.swing.JLabel();
         pnlKhachHang = new javax.swing.JPanel();
         menuKhachHang = new javax.swing.JLabel();
+        pnlThongKe = new javax.swing.JPanel();
+        menuThongKe = new javax.swing.JLabel();
+        pnlNhanVien = new javax.swing.JPanel();
+        menuNhanVien = new javax.swing.JLabel();
         pnlQuanLy = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,7 +144,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(lblNgayGio1))
                     .addComponent(lblNgayGio))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,23 +216,6 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addComponent(menuSanPham, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
 
-        pnlNhanVien.setBackground(new java.awt.Color(255, 204, 204));
-
-        menuNhanVien.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        menuNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuNhanVien.setText("NHÂN VIÊN");
-
-        javax.swing.GroupLayout pnlNhanVienLayout = new javax.swing.GroupLayout(pnlNhanVien);
-        pnlNhanVien.setLayout(pnlNhanVienLayout);
-        pnlNhanVienLayout.setHorizontalGroup(
-            pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnlNhanVienLayout.setVerticalGroup(
-            pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-        );
-
         pnlDangXuat.setBackground(new java.awt.Color(255, 204, 204));
 
         menuDangXuat.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
@@ -225,11 +226,13 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlDangXuat.setLayout(pnlDangXuatLayout);
         pnlDangXuatLayout.setHorizontalGroup(
             pnlDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlDangXuatLayout.setVerticalGroup(
             pnlDangXuatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDangXuatLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menuDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlThoat.setBackground(new java.awt.Color(255, 204, 204));
@@ -246,7 +249,9 @@ public class ViewQuanLy extends javax.swing.JFrame {
         );
         pnlThoatLayout.setVerticalGroup(
             pnlThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuThoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThoatLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menuThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pnlKhachHang.setBackground(new java.awt.Color(255, 204, 204));
@@ -266,6 +271,49 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addComponent(menuKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
         );
 
+        pnlThongKe.setBackground(new java.awt.Color(255, 204, 204));
+
+        menuThongKe.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuThongKe.setText("THỐNG KÊ");
+        menuThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuThongKeMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlThongKeLayout = new javax.swing.GroupLayout(pnlThongKe);
+        pnlThongKe.setLayout(pnlThongKeLayout);
+        pnlThongKeLayout.setHorizontalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlThongKeLayout.setVerticalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongKeLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menuThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pnlNhanVien.setBackground(new java.awt.Color(255, 204, 204));
+
+        menuNhanVien.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        menuNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuNhanVien.setText("NHÂN VIÊN");
+
+        javax.swing.GroupLayout pnlNhanVienLayout = new javax.swing.GroupLayout(pnlNhanVien);
+        pnlNhanVien.setLayout(pnlNhanVienLayout);
+        pnlNhanVienLayout.setHorizontalGroup(
+            pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlNhanVienLayout.setVerticalGroup(
+            pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlNhanVienLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menuNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -277,9 +325,10 @@ public class ViewQuanLy extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(pnlSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,23 +342,25 @@ public class ViewQuanLy extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlThoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlQuanLyLayout = new javax.swing.GroupLayout(pnlQuanLy);
         pnlQuanLy.setLayout(pnlQuanLyLayout);
         pnlQuanLyLayout.setHorizontalGroup(
             pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1293, Short.MAX_VALUE)
+            .addGap(0, 1243, Short.MAX_VALUE)
         );
         pnlQuanLyLayout.setVerticalGroup(
             pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 716, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlTongLayout = new javax.swing.GroupLayout(pnlTong);
@@ -319,7 +370,8 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addGroup(pnlTongLayout.createSequentialGroup()
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23))
         );
         pnlTongLayout.setVerticalGroup(
             pnlTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,8 +405,9 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private void menuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSanPhamMouseClicked
         pnlSanPham.setBackground(Color.WHITE);
         pnlSanPham.setBackground(Color.WHITE);
-        menuSanPham.setForeground(new Color(0,0,0));
+        menuSanPham.setForeground(new Color(0, 0, 0));
         menuBanHang.setForeground(Color.BLACK);
+        menuThongKe.setForeground(Color.BLACK);
         menuNhanVien.setForeground(Color.BLACK);
         menuKhachHang.setForeground(Color.BLACK);
         menuSanPham.setForeground(Color.BLACK);
@@ -362,10 +415,10 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuThoat.setForeground(Color.BLACK);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        pnlNhanVien.setBackground(null);
+        pnlThongKe.setBackground(null);
         pnlKhachHang.setBackground(null);
         pnlBanHang.setBackground(null);
-        QuanLySanPham sanPham = new QuanLySanPham();
+        ViewQuanLySanPham sanPham = new ViewQuanLySanPham();
         pnlQuanLy.removeAll();
         pnlQuanLy.add(sanPham);
         pnlQuanLy.setLayout(new FlowLayout());
@@ -375,19 +428,20 @@ public class ViewQuanLy extends javax.swing.JFrame {
 
     private void menuBanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBanHangMouseClicked
         pnlBanHang.setBackground(Color.WHITE);
-        menuBanHang.setForeground(new Color(0,0,0));
+        menuBanHang.setForeground(new Color(0, 0, 0));
         menuBanHang.setForeground(Color.BLACK);
         menuNhanVien.setForeground(Color.BLACK);
+        menuThongKe.setForeground(Color.BLACK);
         menuKhachHang.setForeground(Color.BLACK);
         menuSanPham.setForeground(Color.BLACK);
         menuDangXuat.setForeground(Color.BLACK);
         menuThoat.setForeground(Color.BLACK);
         pnlThoat.setBackground(null);
         pnlDangXuat.setBackground(null);
-        pnlNhanVien.setBackground(null);
+        pnlThongKe.setBackground(null);
         pnlKhachHang.setBackground(null);
         pnlSanPham.setBackground(null);
-        BanHang banHang = new BanHang();
+        ViewBanHang banHang = new ViewBanHang(nhanVien);
         pnlQuanLy.removeAll();
         pnlQuanLy.add(banHang);
         pnlQuanLy.setLayout(new FlowLayout());
@@ -399,41 +453,64 @@ public class ViewQuanLy extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuBanHangMouseEntered
 
+    private void menuThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuThongKeMouseClicked
+        pnlThongKe.setBackground(Color.WHITE);
+        menuThongKe.setForeground(new Color(0, 0, 0));
+        menuBanHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuNhanVien.setForeground(Color.BLACK);
+        menuKhachHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuDangXuat.setForeground(Color.BLACK);
+        menuThoat.setForeground(Color.BLACK);
+        pnlSanPham.setBackground(null);
+        pnlThoat.setBackground(null);
+        pnlDangXuat.setBackground(null);
+        pnlKhachHang.setBackground(null);
+        pnlBanHang.setBackground(null);
+        ViewThongKe thongKe = new ViewThongKe();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(thongKe);
+        pnlQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        pnlQuanLy.setVisible(true);
+    }//GEN-LAST:event_menuThongKeMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewQuanLy().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ViewQuanLy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ViewQuanLy().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -448,6 +525,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private javax.swing.JLabel menuNhanVien;
     private javax.swing.JLabel menuSanPham;
     private javax.swing.JLabel menuThoat;
+    private javax.swing.JLabel menuThongKe;
     private javax.swing.JPanel pnlBanHang;
     private javax.swing.JPanel pnlDangXuat;
     private javax.swing.JPanel pnlKhachHang;
@@ -456,6 +534,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
     private javax.swing.JPanel pnlQuanLy;
     private javax.swing.JPanel pnlSanPham;
     private javax.swing.JPanel pnlThoat;
+    private javax.swing.JPanel pnlThongKe;
     private javax.swing.JPanel pnlTong;
     private javax.swing.JTextField txtChucVu;
     private javax.swing.JTextField txtMaNV;

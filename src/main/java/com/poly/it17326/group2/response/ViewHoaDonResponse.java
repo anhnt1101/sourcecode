@@ -5,6 +5,7 @@
 package com.poly.it17326.group2.response;
 
 import com.poly.it17326.group2.domainmodel.HoaDon;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,27 +19,40 @@ import lombok.ToString;
 @ToString
 public class ViewHoaDonResponse {
 
+    private String id;
     private String maHD;
     private String ngayTao;
-    private String tenTaiKhoan;
+    private String tenNhanVien;
+    private String tenKhachHang;
     private Integer trangThai;
+    private String lyDo;
+    private String ngayThanhToan;
+    private String ngaySua;
+    private BigDecimal tienKhuyenMai;
+    private BigDecimal tongTien;
+    private BigDecimal tienTraLai;
 
     public ViewHoaDonResponse() {
     }
 
     public ViewHoaDonResponse(HoaDon hoaDon) {
+        this.id = hoaDon.getId();
         this.maHD = hoaDon.getMa();
         this.ngayTao = hoaDon.getNgayTao();
-        this.tenTaiKhoan = hoaDon.getTaiKhoan().getTenTaiKhoan();
+        this.tenNhanVien = hoaDon.getNhanVien().getHoTen();
+        this.tenKhachHang = hoaDon.getKhachHang().getHoTen();
         this.trangThai = hoaDon.getTrangThai().getTenTrangThai();
+        this.lyDo = hoaDon.getLyDo();
+        this.tongTien = hoaDon.getTongTien();
+        this.tienTraLai = hoaDon.getTienTraLai();
     }
 
     public String htTrangThai() {
         if (this.trangThai == 1) {
-            return "Đã thanh toán";
+            return "Chờ thanh toán";
         } else if (this.trangThai == 0) {
             return "Đã hủy";
         }
-        return "Chờ thanh toán";
+        return "Đã thanh toán";
     }
 }

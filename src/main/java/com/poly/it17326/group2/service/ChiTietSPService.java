@@ -31,7 +31,7 @@ public interface ChiTietSPService {
 
     Boolean delete(String id);
 
-    List<ViewChiTietSPResponse> timKiem(String ten);
+    List<ViewChiTietSPResponse> timKiem(String tenSP);
 
     int genMaCTSPTuDong();
 }

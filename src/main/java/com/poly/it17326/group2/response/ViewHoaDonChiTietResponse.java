@@ -18,23 +18,25 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ViewHoaDonChiTietResponse {
-    
-    private String maSP;
+
+    private String ctsp;
     private String tenSP;
-    private int soLuong;
-    private int size;
-    private Double gia;
-    private Double tongTien;
+    private Integer soLuong;
+    private int kichThuoc;
+    private String mauSac;
+    private BigDecimal gia;
+    private BigDecimal tongTien;
 
     public ViewHoaDonChiTietResponse() {
     }
 
     public ViewHoaDonChiTietResponse(HoaDonChiTiet hoaDonChiTiet) {
-        this.maSP = hoaDonChiTiet.getMaSp();
+        this.ctsp = hoaDonChiTiet.getChiTietSP().getMaChiTietSP();
         this.tenSP = hoaDonChiTiet.getTenSp();
         this.soLuong = hoaDonChiTiet.getSoLuong();
-        this.size = hoaDonChiTiet.getSize();
+        this.kichThuoc = hoaDonChiTiet.getKichThuoc();
+        this.mauSac = hoaDonChiTiet.getMauSac();
         this.gia = hoaDonChiTiet.getGia();
-        this.tongTien = hoaDonChiTiet.getSoLuong() * hoaDonChiTiet.getGia();
-    }    
+        this.tongTien = BigDecimal.valueOf(Double.valueOf(hoaDonChiTiet.getSoLuong())).multiply(hoaDonChiTiet.getGia());
+    }
 }

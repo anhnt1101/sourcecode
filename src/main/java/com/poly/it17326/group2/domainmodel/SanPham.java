@@ -55,6 +55,6 @@ public class SanPham implements Serializable {
     private Integer trangThai;
 
     @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<ChiTietSP> listChiTietSP;
 }
