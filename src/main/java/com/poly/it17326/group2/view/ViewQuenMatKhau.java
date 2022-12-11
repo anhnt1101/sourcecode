@@ -8,6 +8,7 @@ import com.poly.it17326.group2.domainmodel.NhanVien;
 import com.poly.it17326.group2.service.NhanVienService;
 import com.poly.it17326.group2.service.impl.NhanVienServiceImpl;
 import com.poly.it17326.group2.util.EmailSender;
+import com.poly.it17326.group2.util.MaHoaChuoi;
 import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,6 +30,8 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ImageIcon imgicon = new ImageIcon("src\\main\\resources\\image\\shoes.png");
         this.setIconImage(imgicon.getImage());
+        showMatKhauMoi = false;
+        showMatKhauMoiP2 = false;
     }
 
     /**
@@ -244,7 +247,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         }
         NhanVien nhanVien = nhanVienService.getByEmail(txtEmail.getText());
         if (nhanVien == null) {
-            JOptionPane.showMessageDialog(this, "Khong tim thay Email");
+            JOptionPane.showMessageDialog(this, "Không tìm thấy Email");
         } else {
             //Send to Email
             if (firstSend == 0L) {
@@ -279,35 +282,33 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         if (!chkNewPass.equals(mxm)) {
             JOptionPane.showMessageDialog(this, "Mã xác minh không đúng");
             return;
-        }
+        } 
         if (txtMatKhauMoi.getText().trim().isEmpty() || txtNhapLaiMK.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Không được để trống mật khẩu mới");
             return;
         }
-
         String pass1 = new String(txtMatKhauMoi.getPassword());
         String pass2 = new String(txtNhapLaiMK.getPassword());
         if (!pass2.equals(pass1)) {
             JOptionPane.showMessageDialog(this, "Hai Password phải giống nhau");
             return;
         }
-        if (nhanVienService.updateMatKhau(txtEmail.getText().trim(), pass1)) {
-            JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công");
-        } else {
-            JOptionPane.showMessageDialog(this, "Đổi mật khẩu thất bại");
+        String hashPassword = MaHoaChuoi.maHoaMd5(pass2);
+        if (nhanVienService.updateMatKhau(hashPassword, txtEmail.getText().trim())) {
+            JOptionPane.showMessageDialog(this, "Thành Công");
         }
     }//GEN-LAST:event_btnDoiMatKhauMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        new ViewLogin().setVisible(true);
+        new ViewDangNhap().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void lblHTMK1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHTMK1MouseClicked
-         if (showMatKhauMoi == false) {
+        if (showMatKhauMoi == false) {
             txtMatKhauMoi.setEchoChar((char) 0);
             showMatKhauMoi = true;
-            lblHTMK1.setIcon(new ImageIcon("src\\main\\resources\\image\\view.png"));
+            lblHTMK1.setIcon(new ImageIcon("src\\main\\resources\\image\\eye.png"));
         } else {
             txtMatKhauMoi.setEchoChar('*');
             showMatKhauMoi = false;
@@ -319,7 +320,7 @@ public class ViewQuenMatKhau extends javax.swing.JFrame {
         if (showMatKhauMoiP2 == false) {
             txtNhapLaiMK.setEchoChar((char) 0);
             showMatKhauMoiP2 = true;
-             lblHTMK2.setIcon(new ImageIcon("src\\main\\resources\\image\\view.png"));
+            lblHTMK2.setIcon(new ImageIcon("src\\main\\resources\\image\\eye.png"));
         } else {
             txtNhapLaiMK.setEchoChar('*');
             showMatKhauMoiP2 = false;

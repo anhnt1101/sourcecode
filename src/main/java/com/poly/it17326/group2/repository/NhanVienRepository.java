@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 public class NhanVienRepository {
 
     private Session session = HibernateConfig.getFACTORY().openSession();
+    private Transaction trans;
 
     public List<NhanVien> getAll() {
         Query query = session.createQuery("FROM TaiKhoan");
@@ -24,7 +25,7 @@ public class NhanVienRepository {
     }
 
     public Boolean add(NhanVien taiKhoan) {
-        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.saveOrUpdate(taiKhoan);
             transaction.commit();
@@ -37,7 +38,7 @@ public class NhanVienRepository {
     }
 
     public Boolean delete(String id) {
-        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+        try ( Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.createQuery("DELETE FROM TaiKhoan WHERE Id = :Id");
             query.setParameter("Id", id);
@@ -69,22 +70,25 @@ public class NhanVienRepository {
         return null;
     }
 
-    public Boolean updateMatKhau(String email, String matKhau) {
-        try (Session session = HibernateConfig.getFACTORY().openSession()) {
-            Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE NhanVien SET NHANVIEN.matKhau = :matKhau where NHANVIEN.email = :email");
+    public Boolean updateMatKhau(String matKhau, String email) {
+        try {
+            trans = session.beginTransaction();
+            String hql = "UPDATE NhanVien SET NHANVIEN.matKhau = :matKhau WHERE NHANVIEN.email = :email";
+            Query query = session.createNativeQuery(hql);
             query.setParameter("matKhau", matKhau);
             query.setParameter("email", email);
             query.executeUpdate();
+            trans.commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
     public static void main(String[] args) {
         NhanVienRepository nhanVienRepository = new NhanVienRepository();
-        NhanVien nhanVien = nhanVienRepository.getByEmail("tuannvph27467@fpt.edu.vn");
-        System.out.println(nhanVien.getEmail());
+        nhanVienRepository.updateMatKhau("1234", "nguyentuananh110123@gmail.com");
+        //System.out.println(nhanVien.getEmail());
     }
 }

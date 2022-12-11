@@ -1,4 +1,4 @@
-package com.poly.it17326.group2.view;
+    package com.poly.it17326.group2.view;
 
 import com.poly.it17326.group2.domainmodel.ChucVu;
 import com.poly.it17326.group2.domainmodel.NhanVien;

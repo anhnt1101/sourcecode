@@ -210,7 +210,7 @@ select * from TrangThai
 select * from KhachHang
 INSERT INTO KhachHang(Ma, HoTen, GioiTinh, NgaySinh, Sdt, DiaChi, CapBac, NgayTao, NgaySua)
 VALUES ('KH001',N'Khách Lẻ',0,GETDATE(),'0377463664',N'Hà Nội',0,GETDATE(),GETDATE())
-
+UPDATE NhanVien SET NHANVIEN.matKhau = null  WHERE NHANVIEN.email ='nguyentuananh110123@gmail.com'
 
 
 select * from ChiTietSP p 
@@ -230,8 +230,8 @@ delete from MauSac where  id = 'D56AFEAE-911B-4483-B7F4-313B1CD64735'
 insert into ChucVu(Ma, Ten) values ('QL01',N'Quản lí')
 insert into ChucVu(Ma, Ten) values ('NV02',N'Nhân viên')
 --Insert Data table NhanVien
-INSERT INTO NhanVien(Ma, HoTen, NgayTao, NgaySua, Email, CCCD, Sdt, MatKhau, IdCV, TrangThai)
-VALUES ('NV01',N'Nguyễn Tuấn Anh',GETDATE(),GETDATE(),'nguyentuananh110123@gmail.com','0123456789','0377463664','123456','D68FE799-7E6F-4819-B537-EA9B1905AA30',1)
+INSERT INTO NhanVien(Ma, HoTen, NgayTao, NgaySua, Email, CCCD, Sdt, IdCV, TrangThai)
+VALUES ('NV02',N'Nguyễn Tuấn Anh',GETDATE(),GETDATE(),'anhntph27418@fpt.edu.vn','0123456789','0377463664','D68FE799-7E6F-4819-B537-EA9B1905AA30',1)
 --insert data table thuonghieu
 insert into ThuongHieu(Ma, Ten) values ('TH01', 'Adidas')
 insert into ThuongHieu(Ma, Ten) values ('TH02', 'Balenciaga')

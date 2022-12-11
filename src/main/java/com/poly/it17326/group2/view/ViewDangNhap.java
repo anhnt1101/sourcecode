@@ -4,15 +4,16 @@ import com.poly.it17326.group2.domainmodel.NhanVien;
 import com.poly.it17326.group2.service.impl.NhanVienServiceImpl;
 import javax.swing.JOptionPane;
 import com.poly.it17326.group2.service.NhanVienService;
+import com.poly.it17326.group2.util.MaHoaChuoi;
 import javax.swing.ImageIcon;
 //hocnvph27417
 
-public class ViewLogin extends javax.swing.JFrame {
+public class ViewDangNhap extends javax.swing.JFrame {
 
     private NhanVienService taiKhoanService = new NhanVienServiceImpl();
     private boolean showMatKhauMoi;
 
-    public ViewLogin() {
+    public ViewDangNhap() {
         initComponents();
         setLocationRelativeTo(null);
         ImageIcon imgicon = new ImageIcon("src\\main\\resources\\image\\shoes.png");
@@ -80,7 +81,7 @@ public class ViewLogin extends javax.swing.JFrame {
 
         txtPassWorld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtPassWorld.setForeground(new java.awt.Color(51, 51, 51));
-        txtPassWorld.setText("ph27467");
+        txtPassWorld.setText("ph27418");
         txtPassWorld.setBorder(null);
         txtPassWorld.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,29 +253,32 @@ public class ViewLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String email = txtEmail.getText();
-        String pass = new String(txtPassWorld.getPassword());
-        StringBuilder sb = new StringBuilder();
-        if (email.equals("")) {
-            sb.append("Email đang bỏ trống!\n");
+        try {
+            String email = txtEmail.getText();
+            String pass = txtPassWorld.getText().trim();
+            StringBuilder sb = new StringBuilder();
+            if (email.equals("")) {
+                sb.append("Email đang bỏ trống!\n");
+            }
+            if (pass.equals("")) {
+                sb.append("Mật khẩu đang bỏ trống!").append("\n");
+            }
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString());
+                return;
+            }
+            String hashPassWord = MaHoaChuoi.maHoaMd5(pass);
+            NhanVien nhanVien = taiKhoanService.getByEmailAndMatKhau(email, hashPassWord);
+            if (nhanVien == null) {
+                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác");
+            } else {
+                JOptionPane.showMessageDialog(this, "Bạn đã đăng nhập thành công");
+                new ViewQuanLy(nhanVien).setVisible(true);
+                this.dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (pass.equals("")) {
-            sb.append("Mật khẩu đang bỏ trống!").append("\n");
-        }
-        if (sb.length() > 0) {
-            JOptionPane.showMessageDialog(this, sb.toString());
-            return;
-        }
-        NhanVien nhanVien = taiKhoanService.getByEmailAndMatKhau(email, pass);
-        if (nhanVien == null) {
-            JOptionPane.showMessageDialog(this, "Đăng nhập thất bại");
-        } else {
-            JOptionPane.showMessageDialog(this, "Bạn đã đăng nhập thành công");
-//            ViewBanHang viewBanHang = new ViewBanHang(txtEmail.getText());
-            new ViewQuanLy(nhanVien).setVisible(true);
-            this.dispose();
-        }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -304,7 +308,7 @@ public class ViewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void lblHTMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHTMKMouseClicked
-         if (showMatKhauMoi == false) {
+        if (showMatKhauMoi == false) {
             txtPassWorld.setEchoChar((char) 0);
             showMatKhauMoi = true;
             lblHTMK.setIcon(new ImageIcon("src\\main\\resources\\image\\eye.png"));
@@ -315,7 +319,7 @@ public class ViewLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblHTMKMouseClicked
     public static void main(String[] args) {
-        new ViewLogin().setVisible(true);
+        new ViewDangNhap().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
