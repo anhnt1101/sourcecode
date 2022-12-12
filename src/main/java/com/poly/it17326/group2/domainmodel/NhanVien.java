@@ -26,7 +26,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@ToString
+@ToString
 public class NhanVien implements Serializable {
 
     @Id
@@ -66,6 +66,6 @@ public class NhanVien implements Serializable {
     private Integer trangThai;
 
     @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<HoaDon> listHoaDon;
 }

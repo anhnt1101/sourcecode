@@ -19,6 +19,7 @@ import lombok.ToString;
 @ToString
 public class ViewHoaDonChiTietResponse {
 
+    private String id;
     private String ctsp;
     private String tenSP;
     private Integer soLuong;
@@ -31,6 +32,7 @@ public class ViewHoaDonChiTietResponse {
     }
 
     public ViewHoaDonChiTietResponse(HoaDonChiTiet hoaDonChiTiet) {
+        this.id = hoaDonChiTiet.getId();
         this.ctsp = hoaDonChiTiet.getChiTietSP().getMaChiTietSP();
         this.tenSP = hoaDonChiTiet.getTenSp();
         this.soLuong = hoaDonChiTiet.getSoLuong();

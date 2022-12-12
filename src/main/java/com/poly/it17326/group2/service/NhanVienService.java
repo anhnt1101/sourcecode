@@ -21,5 +21,5 @@ public interface NhanVienService {
 
     NhanVien getByEmail(String email);
     
-    Boolean updateMatKhau(String matKhau, String email);
+    Boolean updateMatKhau(String email, String matKhau);
 }

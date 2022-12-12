@@ -16,7 +16,7 @@ public class DoiMatKhauServiceImpl implements DoiMatKhau {
     private DoiMatKhauRepository doiMatKhauRepository = new DoiMatKhauRepository();
 
     @Override
-    public Boolean GetIdNhanVien(String email, String matkhau) {
+    public String GetIdNhanVien(String email, String matkhau) {
         return doiMatKhauRepository.GetIdNhanVien(email, matkhau);
     }
 

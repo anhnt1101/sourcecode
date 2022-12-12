@@ -5,6 +5,7 @@
 package com.poly.it17326.group2.response;
 
 import com.poly.it17326.group2.domainmodel.KhachHang;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,7 +23,7 @@ public class ViewKhachHangResponse {
     private String ma;
     private String hoTen;
     private int gioiTinh;
-    private String ngaySinh;
+    private Date ngaySinh;
     private String sdt;
     private String diaChi;
     private int capBac;

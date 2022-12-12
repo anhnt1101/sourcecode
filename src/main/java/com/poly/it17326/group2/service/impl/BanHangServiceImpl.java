@@ -143,25 +143,26 @@ public class BanHangServiceImpl implements BanHangService {
     public Boolean updateHDCT(HoaDonChiTiet hoaDonChiTiet) {
         return hoaDonChiTietRepository.add(hoaDonChiTiet);
     }
+//////////////////////////////////////////////////////////////////
 
     @Override
-    public Boolean huyDon(ChiTietSP chiTietSP, String id) {
-        return banHangRepository.huyDon(chiTietSP, id);
+    public Boolean huyDon(HoaDon hoaDon, String idHD) {
+        return banHangRepository.huyDon(hoaDon, idHD);
     }
-//////////////////////////////////////////////////////////////////
+
     @Override
     public Boolean updateKhach(HoaDon hoaDon, String id) {
         return banHangRepository.updateKhach(hoaDon, id);
     }
 
     @Override
-    public Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
-        return banHangRepository.tangSL(hoaDonChiTiet, idHD);
+    public Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT) {
+        return banHangRepository.tangSL(hoaDonChiTiet, idHDCT);
     }
 
     @Override
-    public Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
-        return banHangRepository.giamSL(hoaDonChiTiet, idHD);
+    public Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT) {
+        return banHangRepository.giamSL(hoaDonChiTiet, idHDCT);
     }
 
     @Override
@@ -172,6 +173,11 @@ public class BanHangServiceImpl implements BanHangService {
     @Override
     public Boolean updateTangSL(ChiTietSP chiTietSP, String id) {
         return banHangRepository.upadteTangSP(chiTietSP, id);
+    }
+
+    @Override
+    public Boolean xoaHDCT(String idHDCT) {
+        return banHangRepository.xoaHDCT(idHDCT);
     }
 
 }

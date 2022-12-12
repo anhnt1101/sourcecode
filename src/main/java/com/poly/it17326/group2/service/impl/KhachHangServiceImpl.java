@@ -49,4 +49,9 @@ public class KhachHangServiceImpl implements KhachHangService {
         return response;
     }
 
+    @Override
+    public int genMaKH() {
+        return khachHangRepository.genMaKH();
+    }
+
 }

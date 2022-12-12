@@ -76,7 +76,7 @@ public class ChiTietSP implements Serializable {
     private BigDecimal gia;
 
     @OneToMany(mappedBy = "chiTietSP", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<HoaDonChiTiet> listHDCT;
 
 }

@@ -4,6 +4,8 @@
  */
 package com.poly.it17326.group2.domainmodel;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -31,7 +33,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class KhachHang {
+public class KhachHang implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +59,7 @@ public class KhachHang {
     private int capBac;
 
     @Column(name = "NgaySinh")
-    private String ngaySinh;
+    private Date ngaySinh;
 
     @Column(name = "NgayTao")
     private String ngayTao;
@@ -66,6 +68,6 @@ public class KhachHang {
     private String ngaySua;
 
     @OneToMany(mappedBy = "khachHang", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private List<HoaDon> listHD;
 }

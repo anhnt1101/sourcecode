@@ -19,5 +19,6 @@ public interface KhachHangService {
     List<ViewKhachHangResponse> getByHoTenKhach(String hoTen);
     
     Boolean create(KhachHang khachHang);
-
+    
+    int genMaKH();
 }

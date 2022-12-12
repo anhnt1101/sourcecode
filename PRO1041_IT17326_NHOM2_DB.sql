@@ -199,8 +199,10 @@ select * from NhanVien
 select * from HoaDon
 select * from TrangThai
 select * from HoaDonChiTiet
-select * from ChiTietSP
- select * from SanPham
+select * from ChiTietSP 
+SELECT * FROM ChiTietSP p  WHERE p.trangThai = 1 ORDER BY CONVERT(INT,SUBSTRING(p.maChiTietSP,5,10)) DESC
+select * from SanPham
+delete from HoaDonChiTiet where id = 'C5FE11D3-D7C8-4FB6-AF40-E15AB78B2FD1'
 select * from DeGiay
 select * from MauSac
 select * from KichThuoc
@@ -208,11 +210,12 @@ select * from ThuongHieu
 select * from NhaCungCap
 select * from TrangThai
 select * from KhachHang
+select * from KhuyenMai
 INSERT INTO KhachHang(Ma, HoTen, GioiTinh, NgaySinh, Sdt, DiaChi, CapBac, NgayTao, NgaySua)
 VALUES ('KH001',N'Khách Lẻ',0,GETDATE(),'0377463664',N'Hà Nội',0,GETDATE(),GETDATE())
 UPDATE NhanVien SET NHANVIEN.matKhau = null  WHERE NHANVIEN.email ='nguyentuananh110123@gmail.com'
 
-
+UPDATE KhachHang SET ma = 'KH0' where ma ='KH001'
 select * from ChiTietSP p 
 where p.TrangThai = 0
 and p.IdThuongHieu = 'A970E0BA-4F4B-4489-AB5C-11201CA08F70' 
@@ -278,7 +281,7 @@ insert into TrangThai(Ma,TrangThai) values ('TT03',2)
 --insert data table hoa don chi tiet
 insert into HoaDonChiTiet(IdHoaDon, IdChiTietSP) 
 values ('8B67E086-8C82-4BDB-8761-AFCB8B720A82','7F5FDB06-82C2-49EF-BF21-142F4D560F57')
-delete from HoaDon where id = '7897413D-E726-4D62-89E0-CF9FC6570B2A'
+delete from ChiTietSp where id = 'C2F37F5D-48DD-4464-86DC-A9C503736669'
 select * from HoaDon
 select * from HoaDonChiTiet
 select * from NhanVien
@@ -288,8 +291,8 @@ select * from TrangThai
 select * from SanPham
 
 
-ALTER TABLE ChiTietSp  
-DROP CONSTRAINT [FK__ChiTietSP__IdKic__4B7734FF];   
+ALTER TABLE hoadon  
+DROP CONSTRAINT [FK__HoaDon__IdTrangT__36470DEF];   
 
 delete from HoaDonChiTiet where id = 'E379B1E5-CACE-45B4-99D0-FB70A5451CA9'
 

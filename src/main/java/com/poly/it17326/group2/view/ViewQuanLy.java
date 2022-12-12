@@ -8,6 +8,8 @@ import com.poly.it17326.group2.domainmodel.NhanVien;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +41,26 @@ public class ViewQuanLy extends javax.swing.JFrame {
 
         ImageIcon imgicon = new ImageIcon("src\\main\\resources\\image\\shoes.png");
         this.setIconImage(imgicon.getImage());
+        
+        Thread countDownThread = new Thread() {
+            @Override
+            public void run() {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm aa");
+                do {
+                    Date now = new Date();
+
+                    String st = sdf.format(now);
+
+                    lblNgayGio.setText(st);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } while (true);
+            }
+        };
+        countDownThread.start();
         
         txtMaNV.setText(nhanVien.getMa());
         txtTenNV.setText(nhanVien.getHoTen());
@@ -73,14 +95,14 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuDangXuat = new javax.swing.JLabel();
         pnlThoat = new javax.swing.JPanel();
         menuThoat = new javax.swing.JLabel();
-        pnlThongKe = new javax.swing.JPanel();
-        menuThongKe = new javax.swing.JLabel();
         pnlNhanVien = new javax.swing.JPanel();
         menuNhanVien = new javax.swing.JLabel();
         pnlKhuyenMai = new javax.swing.JPanel();
         menuKhuyenMai = new javax.swing.JLabel();
         pnlKhachHang = new javax.swing.JPanel();
         menuKhachHang = new javax.swing.JLabel();
+        pnlThongKe = new javax.swing.JPanel();
+        menuThongKe = new javax.swing.JLabel();
         pnlQuanLy = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,13 +166,13 @@ public class ViewQuanLy extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNgayGio)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(lblNgayGio1))
-                    .addComponent(lblNgayGio))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNgayGio1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,35 +292,16 @@ public class ViewQuanLy extends javax.swing.JFrame {
                 .addComponent(menuThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        pnlThongKe.setBackground(new java.awt.Color(255, 204, 204));
-
-        menuThongKe.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
-        menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuThongKe.setText("THỐNG KÊ");
-        menuThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuThongKeMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlThongKeLayout = new javax.swing.GroupLayout(pnlThongKe);
-        pnlThongKe.setLayout(pnlThongKeLayout);
-        pnlThongKeLayout.setHorizontalGroup(
-            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnlThongKeLayout.setVerticalGroup(
-            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongKeLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(menuThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         pnlNhanVien.setBackground(new java.awt.Color(255, 204, 204));
 
         menuNhanVien.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         menuNhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuNhanVien.setText("NHÂN VIÊN");
+        menuNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuNhanVienMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlNhanVienLayout = new javax.swing.GroupLayout(pnlNhanVien);
         pnlNhanVien.setLayout(pnlNhanVienLayout);
@@ -318,6 +321,11 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuKhuyenMai.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         menuKhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuKhuyenMai.setText("KHUYẾN MÃI");
+        menuKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuKhuyenMaiMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlKhuyenMaiLayout = new javax.swing.GroupLayout(pnlKhuyenMai);
         pnlKhuyenMai.setLayout(pnlKhuyenMaiLayout);
@@ -337,18 +345,47 @@ public class ViewQuanLy extends javax.swing.JFrame {
         menuKhachHang.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
         menuKhachHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuKhachHang.setText("KHÁCH HÀNG");
+        menuKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuKhachHangMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlKhachHangLayout = new javax.swing.GroupLayout(pnlKhachHang);
         pnlKhachHang.setLayout(pnlKhachHangLayout);
         pnlKhachHangLayout.setHorizontalGroup(
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+            .addComponent(menuKhachHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
         );
         pnlKhachHangLayout.setVerticalGroup(
             pnlKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlKhachHangLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(menuKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        pnlThongKe.setBackground(new java.awt.Color(255, 204, 204));
+
+        menuThongKe.setFont(new java.awt.Font("Times New Roman", 0, 20)); // NOI18N
+        menuThongKe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuThongKe.setText("THỐNG KÊ");
+        menuThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuThongKeMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlThongKeLayout = new javax.swing.GroupLayout(pnlThongKe);
+        pnlThongKe.setLayout(pnlThongKeLayout);
+        pnlThongKeLayout.setHorizontalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlThongKeLayout.setVerticalGroup(
+            pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlThongKeLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menuThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
@@ -359,17 +396,17 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addComponent(pnlSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,9 +420,9 @@ public class ViewQuanLy extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(pnlKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -399,7 +436,7 @@ public class ViewQuanLy extends javax.swing.JFrame {
         pnlQuanLy.setLayout(pnlQuanLyLayout);
         pnlQuanLyLayout.setHorizontalGroup(
             pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1239, Short.MAX_VALUE)
+            .addGap(0, 1120, Short.MAX_VALUE)
         );
         pnlQuanLyLayout.setVerticalGroup(
             pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,8 +450,8 @@ public class ViewQuanLy extends javax.swing.JFrame {
             .addGroup(pnlTongLayout.createSequentialGroup()
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(23, 23, 23))
+                .addComponent(pnlQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlTongLayout.setVerticalGroup(
             pnlTongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,6 +619,87 @@ public class ViewQuanLy extends javax.swing.JFrame {
         }
         System.exit(0);
     }//GEN-LAST:event_menuThoatMouseClicked
+
+    private void menuKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuKhachHangMouseClicked
+        pnlKhachHang.setBackground(Color.WHITE);
+        menuKhachHang.setForeground(new Color(0, 0, 0));
+        
+        menuBanHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuKhuyenMai.setForeground(Color.BLACK);
+        menuThongKe.setForeground(Color.BLACK);
+        menuNhanVien.setForeground(Color.BLACK);
+        menuDangXuat.setForeground(Color.BLACK);
+        menuThoat.setForeground(Color.BLACK);
+        
+        pnlBanHang.setBackground(null);
+        pnlSanPham.setBackground(null);
+        pnlKhuyenMai.setBackground(null);
+        pnlThongKe.setBackground(null);
+        pnlDangXuat.setBackground(null);
+        pnlNhanVien.setBackground(null);
+        pnlThoat.setBackground(null);
+        ViewKhachHang khachHang = new ViewKhachHang();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(khachHang);
+        pnlQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        pnlQuanLy.setVisible(true);
+    }//GEN-LAST:event_menuKhachHangMouseClicked
+
+    private void menuNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuNhanVienMouseClicked
+        pnlNhanVien.setBackground(Color.WHITE);
+        menuNhanVien.setForeground(new Color(0, 0, 0));
+        
+        menuBanHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuKhuyenMai.setForeground(Color.BLACK);
+        menuThongKe.setForeground(Color.BLACK);
+        menuKhachHang.setForeground(Color.BLACK);
+        menuDangXuat.setForeground(Color.BLACK);
+        menuThoat.setForeground(Color.BLACK);
+        
+        pnlBanHang.setBackground(null);
+        pnlSanPham.setBackground(null);
+        pnlKhuyenMai.setBackground(null);
+        pnlThongKe.setBackground(null);
+        pnlDangXuat.setBackground(null);
+        pnlKhachHang.setBackground(null);
+        pnlThoat.setBackground(null);
+        ViewNhanVien nhanVien = new ViewNhanVien();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(nhanVien);
+        pnlQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        pnlQuanLy.setVisible(true);
+    }//GEN-LAST:event_menuNhanVienMouseClicked
+
+    private void menuKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuKhuyenMaiMouseClicked
+        pnlKhuyenMai.setBackground(Color.WHITE);
+        menuKhuyenMai.setForeground(new Color(0, 0, 0));
+        
+        menuBanHang.setForeground(Color.BLACK);
+        menuSanPham.setForeground(Color.BLACK);
+        menuNhanVien.setForeground(Color.BLACK);
+        menuThongKe.setForeground(Color.BLACK);
+        menuKhachHang.setForeground(Color.BLACK);
+        menuDangXuat.setForeground(Color.BLACK);
+        menuThoat.setForeground(Color.BLACK);
+        
+        pnlBanHang.setBackground(null);
+        pnlSanPham.setBackground(null);
+        pnlNhanVien.setBackground(null);
+        pnlThongKe.setBackground(null);
+        pnlDangXuat.setBackground(null);
+        pnlKhachHang.setBackground(null);
+        pnlThoat.setBackground(null);
+        ViewKhuyenMai khuyenMai = new ViewKhuyenMai();
+        pnlQuanLy.removeAll();
+        pnlQuanLy.add(khuyenMai);
+        pnlQuanLy.setLayout(new FlowLayout());
+        this.pack();
+        pnlQuanLy.setVisible(true);
+    }//GEN-LAST:event_menuKhuyenMaiMouseClicked
 
     /**
      * @param args the command line arguments

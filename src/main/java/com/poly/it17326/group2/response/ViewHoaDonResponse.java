@@ -30,6 +30,7 @@ public class ViewHoaDonResponse {
     private String ngaySua;
     private BigDecimal tienKhuyenMai;
     private BigDecimal tongTien;
+    private BigDecimal thanhTien;
     private BigDecimal tienTraLai;
 
     public ViewHoaDonResponse() {
@@ -44,6 +45,7 @@ public class ViewHoaDonResponse {
         this.trangThai = hoaDon.getTrangThai().getTenTrangThai();
         this.lyDo = hoaDon.getLyDo();
         this.tongTien = hoaDon.getTongTien();
+        this.thanhTien = hoaDon.getThanhTien();
         this.tienTraLai = hoaDon.getTienTraLai();
     }
 

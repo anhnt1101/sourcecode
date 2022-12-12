@@ -29,7 +29,7 @@ public class BanHangRepository {
     }
 
     public List<HoaDon> getHoaDonByMa(String ma) {
-        Query query = session.createQuery("Select p From HoaDon p where p.nhanVien.ma = :ma and p.trangThai.tenTrangThai = 1", HoaDon.class);
+        Query query = session.createQuery("Select p From HoaDon p where p.nhanVien.ma = :ma and p.trangThai.tenTrangThai = 1 ORDER BY p.ngayTao DESC", HoaDon.class);
         query.setParameter("ma", ma);
         return query.getResultList();
     }
@@ -65,12 +65,14 @@ public class BanHangRepository {
         }
     }
 
-    public Boolean huyDon(ChiTietSP chiTietSP, String id) {
+    public Boolean huyDon(HoaDon hoaDon, String idHD) {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE ChiTietSP p SET p.soLuongTon = :soLuongTon + p.soLuongTon WHERE p.id = :id");
-            query.setParameter("soLuongTon", chiTietSP.getSoLuongTon());
-            query.setParameter("id", id);
+            Query query = session.createQuery("UPDATE HoaDon p SET p.trangThai.id = :trangThai, p.lyDo = :lyDo, p.ngaySua = :ngaySua WHERE p.id = :idHD");
+            query.setParameter("trangThai", hoaDon.getTrangThai().getId());
+            query.setParameter("lyDo", hoaDon.getLyDo());
+            query.setParameter("ngaySua", hoaDon.getNgaySua());
+            query.setParameter("idHD", idHD);
             query.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -82,8 +84,14 @@ public class BanHangRepository {
     public Boolean thanhToan(HoaDon hoaDon, String id) {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE HoaDon p SET p.trangThai = :trangThai WHERE p.id = :id");
+            Query query = session.createQuery("UPDATE HoaDon p SET p.trangThai = :trangThai, "
+                    + "p.ngayThanhToan = :ngayThanhToan, p.tongTien = :tongTien, "
+                    + "p.thanhTien = :thanhTien, p.tienTraLai = :tienTraLai WHERE p.id = :id");
             query.setParameter("trangThai", hoaDon.getTrangThai());
+            query.setParameter("ngayThanhToan", hoaDon.getNgayThanhToan());
+            query.setParameter("tongTien", hoaDon.getTongTien());
+            query.setParameter("thanhTien", hoaDon.getThanhTien());
+            query.setParameter("tienTraLai", hoaDon.getTienTraLai());
             query.setParameter("id", id);
             query.executeUpdate();
             return true;
@@ -107,12 +115,12 @@ public class BanHangRepository {
         }
     }
 
-    public Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
+    public Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT) {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE HoaDonChiTiet p SET p.soLuong = :soLuong + p.soLuong WHERE p.hoaDon.id = :idHD");;
+            Query query = session.createQuery("UPDATE HoaDonChiTiet p SET p.soLuong = :soLuong + p.soLuong WHERE p.id = :idHDCT");;
             query.setParameter("soLuong", hoaDonChiTiet.getSoLuong());
-            query.setParameter("idHD", idHD);
+            query.setParameter("idHDCT", idHDCT);
             query.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -121,12 +129,12 @@ public class BanHangRepository {
         }
     }
 
-    public Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHD) {
+    public Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT) {
         try (Session session = HibernateConfig.getFACTORY().openSession()) {
             Transaction transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE HoaDonChiTiet p SET p.soLuong = p.soLuong - :soLuong WHERE p.hoaDon.id = :idHD");
+            Query query = session.createQuery("UPDATE HoaDonChiTiet p SET p.soLuong = p.soLuong - :soLuong WHERE p.id = :idHDCT");
             query.setParameter("soLuong", hoaDonChiTiet.getSoLuong());
-            query.setParameter("idHD", idHD);
+            query.setParameter("idHDCT", idHDCT);
             query.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -163,14 +171,26 @@ public class BanHangRepository {
         }
     }
 
+    public Boolean xoaHDCT(String idHDCT) {
+        try (Session session = HibernateConfig.getFACTORY().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query query = session.createQuery("DELETE FROM HoaDonChiTiet p WHERE p.id = :idHDCT");
+            query.setParameter("idHDCT", idHDCT);
+            query.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         BanHangRepository banHangRepository = new BanHangRepository();
-        List<HoaDonChiTiet> chiTiet = banHangRepository.getHDCTByHoaDon("HD1");
-//        chiTiet.setSoLuong(2);
-//        banHangRepository.tangSL(chiTiet, "9FCAECA9-3CAF-4610-B1C0-9C1605188F92");
-        for (HoaDonChiTiet chiTietSP : chiTiet) {
-            System.out.println(chiTietSP.getSoLuong());
-        }
+//        List<HoaDonChiTiet> chiTiet = banHangRepository.getHDCTByHoaDon("HD1");
+        HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
+//        hoaDonChiTiet.setSoLuong(2);
+//        banHangRepository.tangSL(hoaDonChiTiet, "727A40AF-3DBC-4DCF-9C09-38AC35BB5D67");
+        System.out.println(hoaDonChiTiet.getSoLuong());
     }
 
 }

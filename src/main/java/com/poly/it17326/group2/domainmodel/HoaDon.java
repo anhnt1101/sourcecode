@@ -77,6 +77,9 @@ public class HoaDon implements Serializable {
     @Column(name = "TongTien")
     private BigDecimal tongTien;
 
+    @Column(name = "ThanhTien")
+    private BigDecimal thanhTien;
+
     @Column(name = "LyDo")
     private String lyDo;
 

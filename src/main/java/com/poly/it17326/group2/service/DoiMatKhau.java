@@ -9,7 +9,7 @@ package com.poly.it17326.group2.service;
  * @author nguye
  */
 public interface DoiMatKhau {
-    Boolean GetIdNhanVien(String email, String matkhau);
+    String GetIdNhanVien(String email, String matkhau);
     
     Boolean DoiMatKhau(String matkhau, String id);
 }

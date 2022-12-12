@@ -29,7 +29,7 @@ public class ChiTietSPRepository {
     private Session session = HibernateConfig.getFACTORY().openSession();
 
     public List<ChiTietSP> getAll() {
-        Query query = session.createQuery("SELECT p FROM ChiTietSP p WHERE p.trangThai = 1 ORDER BY p.trangThai DESC");
+        Query query = session.createQuery("SELECT p FROM ChiTietSP p WHERE p.trangThai = 1 ORDER BY CONVERT(INT,SUBSTRING(p.maChiTietSP,5,10)) DESC");
         return query.getResultList();
     }
 
@@ -162,7 +162,7 @@ public class ChiTietSPRepository {
             Query query = session.createQuery("SELECT p FROM ChiTietSP p WHERE p.sanPham.ten LIKE CONCAT('%',:ten,'%') "
                     + "OR p.thuongHieu.ten LIKE CONCAT('%',:thuongHieu,'%') "
                     + "OR p.kichThuoc.ten LIKE CONCAT('%',:kichThuoc,'%') "
-                    + "OR p.trangThai LIKE CONCAT('%',:trangThai,'%')");
+                    + "OR p.trangThai LIKE CONCAT('%',:trangThai,'%') ORDER BY CONVERT(INT,SUBSTRING(p.maChiTietSP,5,10)) DESC");
             query.setParameter("ten", ten);
             query.setParameter("thuongHieu", ten);
             query.setParameter("kichThuoc", ten);

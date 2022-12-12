@@ -42,19 +42,20 @@ public interface BanHangService {
     HoaDon getByMaHD(String maHD);
 
     Boolean updateSLSP(ChiTietSP chiTietSP, String id);
+    ///////////////////////////////////////////////
+    Boolean huyDon(HoaDon hoaDon, String idHD);
 
-    Boolean huyDon(ChiTietSP chiTietSP, String id);
-
-    //////////////////////////////////////////////
     Boolean updateKhach(HoaDon hoaDon, String id);
 
-    Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHD);
+    Boolean tangSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT);
 
-    Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHD);
+    Boolean giamSL(HoaDonChiTiet hoaDonChiTiet, String idHDCT);
 
     Boolean updateGiamSL(ChiTietSP chiTietSP, String id);
 
     Boolean updateTangSL(ChiTietSP chiTietSP, String id);
 
     Boolean thanhToan(HoaDon hoaDon, String id);
+    
+    Boolean xoaHDCT(String idHDCT);
 }

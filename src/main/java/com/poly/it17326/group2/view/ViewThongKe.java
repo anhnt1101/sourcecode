@@ -95,6 +95,8 @@ public class ViewThongKe extends javax.swing.JPanel {
 
         jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        pnlBieuDo.setBackground(new java.awt.Color(255, 255, 255));
+
         pnlDoanhThu.setBackground(new java.awt.Color(153, 204, 255));
 
         lblDoanhThu.setFont(new java.awt.Font("Dialog", 1, 21)); // NOI18N
@@ -182,6 +184,7 @@ public class ViewThongKe extends javax.swing.JPanel {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lọc"));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
@@ -327,13 +330,10 @@ public class ViewThongKe extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -401,6 +401,8 @@ public class ViewThongKe extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Biểu đồ", pnlBieuDo);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         pnlHoaDon.setBackground(new java.awt.Color(255, 255, 255));
         pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa Đơn"));
 
@@ -415,6 +417,7 @@ public class ViewThongKe extends javax.swing.JPanel {
         tblHoaDon.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(tblHoaDon);
 
+        rbnDaThanhToan.setBackground(new java.awt.Color(255, 255, 255));
         rbnDaThanhToan.setText("Đã thanh toán");
         rbnDaThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,6 +425,7 @@ public class ViewThongKe extends javax.swing.JPanel {
             }
         });
 
+        rdnDaHuy.setBackground(new java.awt.Color(255, 255, 255));
         rdnDaHuy.setText("Đã hủy");
         rdnDaHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -668,6 +672,8 @@ public class ViewThongKe extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Hóa đơn", jPanel2);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hiệu Suất", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12))); // NOI18N
